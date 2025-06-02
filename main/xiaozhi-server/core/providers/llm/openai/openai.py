@@ -3,6 +3,7 @@ from openai.types import CompletionUsage
 from config.logger import setup_logging
 from core.utils.util import check_model_key
 from core.providers.llm.base import LLMProviderBase
+import uuid
 
 TAG = __name__
 logger = setup_logging()
@@ -30,14 +31,16 @@ class LLMProvider(LLMProviderBase):
         self.client = openai.OpenAI(api_key=self.api_key, base_url=self.base_url)
 
     def response(self, session_id, dialogue):
+        conv_id = str(uuid.uuid4())
         try:
             responses = self.client.chat.completions.create(
                 model=self.model_name,
                 messages=dialogue,
                 stream=True,
                 max_tokens=self.max_tokens,
+                user=conv_id,
             )
-
+            logger.info(f"LLm SEND content{dialogue}with conv_id {conv_id}")
             is_active = True
             for chunk in responses:
                 try:
@@ -65,11 +68,16 @@ class LLMProvider(LLMProviderBase):
             logger.bind(tag=TAG).error(f"Error in response generation: {e}")
 
     def response_with_functions(self, session_id, dialogue, functions=None):
+        conv_id = str(uuid.uuid4())
         try:
             stream = self.client.chat.completions.create(
-                model=self.model_name, messages=dialogue, stream=True, tools=functions
+                model=self.model_name,
+                messages=dialogue,
+                stream=True,
+                tools=functions,
+                user=conv_id,    # ← 同样传递 user
             )
-
+            logger.info(f"LLm SEND content{dialogue}with conv_id {conv_id}")
             for chunk in stream:
                 # 检查是否存在有效的choice且content不为空
                 if getattr(chunk, "choices", None):

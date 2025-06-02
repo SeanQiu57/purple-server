@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>九重Memory 调试</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 1rem;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        textarea,
+        input[type="text"] {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        pre {
+            background: #f5f5f5;
+            padding: .5rem;
+            overflow-x: auto;
+        }
+
+        button {
+            margin-top: .5rem;
+            padding: .5rem 1rem;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .mem-block {
+            margin: .5rem 0;
+        }
+
+        .mem-block textarea {
+            height: 4em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>九重Memory 调试界面</h1>
+
+    <script>
+        // 1. 读取已登录 user_id
+        const uid = localStorage.getItem('user_id');
+        if (!uid) {
+            alert('未检测到用户 ID，请先登录');
+            location.href = 'login.html';
+        }
+    </script>
+
+    <!-- 显示当前用户 & 退出登录 -->
+    <section>
+        <h2>👤 当前用户</h2>
+        <div>
+            用户 ID：<strong id="display-uid"></strong>
+            <button id="logout-btn" style="margin-left:1rem; background:#e74c3c; color:#fff;">退出登录</button>
+        </div>
+    </section>
+
+    <!-- 查询记忆 -->
+    <section>
+        <h2>🔍 查询记忆</h2>
+        <label>输入查询文本：</label><br>
+        <input type="text" id="q-input" placeholder="例如：你好，记忆如何？"><br>
+        <button id="q-btn">查询</button>
+        <pre id="q-out"></pre>
+    </section>
+
+    <!-- 批量导入 & 清空 -->
+    <section>
+        <h2>📥 批量导入 / 📤 清空长期记忆</h2>
+        <label>每行一段要导入的文本：</label><br>
+        <textarea id="imp-texts" rows="6" placeholder="第一段文本\n第二段文本\n…"></textarea><br>
+        <button id="imp-btn">导入</button>
+        <button id="del-btn" style="margin-left:1rem; background:#e74c3c; color:white;">清空长期记忆</button>
+        <pre id="imp-out"></pre>
+    </section>
+
+    <!-- 加载 & 编辑 短期/工作记忆 -->
+    <section>
+        <h2>✏️ 加载 & 编辑 短期 / 工作 记忆</h2>
+        <button id="load-mem-btn">加载记忆</button>
+
+        <div id="short-mem-container">
+            <h3>短期记忆</h3>
+            <div id="short-mem-list"></div>
+        </div>
+
+        <div id="working-mem-container">
+            <h3>工作记忆</h3>
+            <div id="working-mem-list"></div>
+        </div>
+    </section>
+
+    <script>
+        // 把 uid 显示到页面上
+        document.getElementById('display-uid').innerText = uid;
+        // 退出登录：清除并跳回 login.html
+        document.getElementById('logout-btn').onclick = () => {
+            if (confirm('确认退出登录？')) {
+                localStorage.removeItem('user_id');
+                location.href = 'login.html';
+            }
+        };
+
+        // 统一展示结果
+        function showResult(elem, status, body, isError = false) {
+            elem.textContent = `HTTP ${status}\n\n` + body;
+            elem.classList.toggle("error", isError);
+        }
+
+        // 查询
+        document.getElementById("q-btn").onclick = async () => {
+            const out = document.getElementById("q-out");
+            out.textContent = "";
+            const q = document.getElementById("q-input").value.trim();
+            if (!q) return alert("请输入查询内容！");
+            try {
+                const resp = await fetch(`/memory/query`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ user_id: uid, q })
+                });
+                const txt = await resp.text();
+                if (!resp.ok) {
+                    showResult(out, resp.status, txt, true);
+                } else {
+                    showResult(out, resp.status, JSON.stringify(JSON.parse(txt), null, 2));
+                }
+            } catch (e) {
+                showResult(out, "-", e.toString(), true);
+            }
+        };
+
+        // 批量导入
+        document.getElementById("imp-btn").onclick = async () => {
+            const out = document.getElementById("imp-out");
+            out.textContent = "";
+            const texts = document.getElementById("imp-texts").value
+                .split("\n").map(s => s.trim()).filter(s => s);
+            if (texts.length === 0) return alert("请先输入至少一段文本！");
+            try {
+                const resp = await fetch(`/memory/import`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ user_id: uid, texts })
+                });
+                const txt = await resp.text();
+                if (!resp.ok) {
+                    showResult(out, resp.status, txt, true);
+                } else {
+                    showResult(out, resp.status, JSON.stringify(JSON.parse(txt), null, 2));
+                }
+            } catch (e) {
+                showResult(out, "-", e.toString(), true);
+            }
+        };
+
+        // 清空
+        document.getElementById("del-btn").onclick = async () => {
+            const out = document.getElementById("imp-out");
+            out.textContent = "";
+            if (!confirm("确定要清空长期记忆？不可恢复！")) return;
+            try {
+                const resp = await fetch(`/memory/clear?user_id=${encodeURIComponent(uid)}`, {
+                    method: "DELETE"
+                });
+                const txt = await resp.text();
+                if (!resp.ok) {
+                    showResult(out, resp.status, txt, true);
+                } else {
+                    showResult(out, resp.status, JSON.stringify(JSON.parse(txt), null, 2));
+                }
+            } catch (e) {
+                showResult(out, "-", e.toString(), true);
+            }
+        };
+
+        // 加载 & 编辑 短期 / 工作 记忆
+        document.getElementById("load-mem-btn").onclick = async () => {
+            // 短期记忆
+            try {
+                const resp = await fetch(`/memory/short?user_id=${encodeURIComponent(uid)}`);
+                if (!resp.ok) throw new Error(`短期记忆加载失败: ${resp.status}`);
+                const { short } = await resp.json();
+                const list = document.getElementById("short-mem-list");
+                list.innerHTML = "";
+                short.forEach(item => {
+                    const div = document.createElement("div");
+                    div.className = "mem-block";
+                    div.innerHTML = `
+            <textarea data-id="${item.id}">${item.content}</textarea>
+            <button data-id="${item.id}" class="save-short">保存短期记忆</button>
+          `;
+                    list.append(div);
+                });
+            } catch (e) {
+                alert(e);
+            }
+
+            // 工作记忆
+            try {
+                const resp2 = await fetch(`/memory/working?user_id=${encodeURIComponent(uid)}`);
+                if (!resp2.ok) throw new Error(`工作记忆加载失败: ${resp2.status}`);
+                const { working } = await resp2.json();
+                const wm = document.getElementById("working-mem-list");
+                wm.innerHTML = "";
+                if (working) {
+                    const div = document.createElement("div");
+                    div.className = "mem-block";
+                    div.innerHTML = `
+            <textarea id="working-text">${working.content}</textarea>
+            <button id="save-working">保存工作记忆</button>
+          `;
+                    wm.append(div);
+                }
+            } catch (e) {
+                alert(e);
+            }
+        };
+
+        // 保存短期记忆
+        document.body.addEventListener("click", async e => {
+            if (!e.target.matches(".save-short")) return;
+            const id = e.target.dataset.id;
+            const textarea = document.querySelector(`textarea[data-id="${id}"]`);
+            try {
+                const resp = await fetch("/memory/short", {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        user_id: uid,
+                        id: Number(id),
+                        content: textarea.value
+                    })
+                });
+                if (!resp.ok) throw new Error(`保存失败: ${resp.status}`);
+                alert("短期记忆已保存");
+            } catch (err) {
+                alert(err);
+            }
+        });
+
+        // 保存工作记忆
+        document.body.addEventListener("click", async e => {
+            if (e.target.id !== "save-working") return;
+            const content = document.getElementById("working-text").value;
+            try {
+                const resp = await fetch("/memory/working", {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ user_id: uid, content })
+                });
+                if (!resp.ok) throw new Error(`保存失败: ${resp.status}`);
+                alert("工作记忆已保存");
+            } catch (err) {
+                alert(err);
+            }
+        });
+    </script>
+</body>
+
+</html>

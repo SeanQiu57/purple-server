@@ -55,7 +55,7 @@ services:
     image: mysql:latest
     container_name: xiaozhi-esp32-server-db
     healthcheck:
-      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       timeout: 45s
       interval: 10s
       retries: 10
@@ -78,11 +78,27 @@ services:
     container_name: xiaozhi-esp32-server-redis
     restart: always
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: [ "CMD", "redis-cli", "ping" ]
       interval: 10s
       timeout: 5s
       retries: 3
     networks:
       - default
+  postgres:
+    # 增加 build 指令
+    build:
+      context: .
+      dockerfile: Dockerfile.pg
+    image: azi_pgvector:pg16-custom
+    container_name: azi_pg
+    restart: always
+    environment:
+      POSTGRES_USER: azi
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: azi_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
 networks:
   default:

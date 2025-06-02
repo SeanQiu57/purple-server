@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>登录</title>
+</head>
+
+<body>
+    <h1>九重Memory 登录</h1>
+    <form id="login-form">
+        <input type="text" id="login-user-id" placeholder="请输入用户 ID" required>
+        <button type="submit">进入调试页</button>
+    </form>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', e => {
+            e.preventDefault();
+            const uid = document.getElementById('login-user-id').value.trim();
+            if (!uid) return alert('请输入用户 ID');
+            // 存到 localStorage
+            localStorage.setItem('user_id', uid);
+            // 跳转到 http://14.103.150.192:8081/debug-ui/ （请根据实际路径修改）
+            location.href = 'index.html';
+        });
+    </script>
+</body>
+
+</html>

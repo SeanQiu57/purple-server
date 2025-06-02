@@ -241,7 +241,7 @@ class ConnectionHandler:
                         loop.close()
 
                 # 启动线程保存记忆，不等待完成
-                threading.Thread(target=save_memory_task, daemon=True).start()
+                # threading.Thread(target=save_memory_task, daemon=True).start()
         except Exception as e:
             self.logger.bind(tag=TAG).error(f"保存记忆失败: {e}")
         finally:
@@ -587,6 +587,7 @@ class ConnectionHandler:
         self.logger.bind(tag=TAG).debug(
             json.dumps(self.dialogue.get_llm_dialogue(), indent=4, ensure_ascii=False)
         )
+        # self._async_save_memory()
         return True
 
     def chat_with_function_calling(self, query, tool_call=False):
@@ -769,7 +770,7 @@ class ConnectionHandler:
         self.logger.bind(tag=TAG).debug(
             json.dumps(self.dialogue.get_llm_dialogue(), indent=4, ensure_ascii=False)
         )
-
+        self._async_save_memory()
         return True
 
     def _handle_mcp_tool_call(self, function_call_data):
@@ -1090,3 +1091,18 @@ class ConnectionHandler:
                     break
         except Exception as e:
             self.logger.bind(tag=TAG).error(f"超时检查任务出错: {e}")
+    
+    # connection.py  ── 放在 class ConnectionHandler 里，和其他方法平行
+    def _async_save_memory(self):
+        """把 self.dialogue.dialogue 交给 MemoryProvider 保存，后台异步执行"""
+        if not self.memory:
+            return
+        try:
+            # 任何线程里都可以调用 —— 把协程丢到主 event-loop
+            asyncio.run_coroutine_threadsafe(
+                self.memory.save_memory(self.dialogue.dialogue),    # ← 关键
+                self.loop                                           # 主 loop
+            )
+        except Exception as e:
+            self.logger.bind(tag=TAG).error(f"异步保存记忆失败: {e}")
+
