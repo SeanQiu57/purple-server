@@ -11,7 +11,7 @@ from __future__ import annotations
 import logging, re
 from typing import List, Tuple, Any
 import time
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine, text, select
 from sqlalchemy.exc import ProgrammingError
 from langchain.docstore.document import Document
 from langchain.embeddings.base import Embeddings
@@ -19,7 +19,8 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores.pgvector import PGVector
 from volcenginesdkarkruntime import Ark
 from volcenginesdkarkruntime._exceptions import ArkRateLimitError
-
+from collections import UserDict
+from sqlalchemy.orm import Session
 # ───────────────────────────── Logger
 _logger = logging.getLogger("lc_mem")
 _logger.setLevel(logging.DEBUG)
@@ -47,6 +48,9 @@ class ArkEmbedding(Embeddings):
     def embed_query(self, text: str) -> List[float]:
         return self.embed_documents([text])[0]
 
+class _SafeDict(UserDict):
+    def __missing__(self, key):          # 缺失占位符直接保留原样
+        return f"{{{key}}}"
 # ───────────────────────────── 初始化
 class MemoryStore:
     def __init__(
@@ -64,7 +68,8 @@ class MemoryStore:
                 PGVector.initialize(pg_url, collection_name="jiuchongmemory")
             except Exception:
                 pass
-
+        self.pg_url = pg_url                       # ← 保存
+        self.engine = create_engine(pg_url)   
         self.role_id = str(role_id)
         self.embedder = ArkEmbedding(ark_client, ark_model_id)
         self.vs = PGVector(
@@ -133,6 +138,95 @@ class MemoryStore:
             lambda_mult=0.6,
             filter={"user_id": str(role_id)},
         )
+    
+    async def build_prompt(
+        self,
+        query: str,
+        memory_doc_model,
+        scene: str = "chat"
+    ) -> str:
+        uid = str(self.role_id)
+
+        # 1. 查所有参数
+        with Session(self.engine) as s:
+            pp = s.execute(
+                text("""
+                    SELECT conv_prompt, wm_prompt, knowledge_base,
+                        chat_short_keep, chat_kb_k, chat_long_k,
+                        wm_short_keep, wm_kb_k, wm_long_k
+                    FROM prompt_profile WHERE user_id=:d
+                """),
+                {"d": uid}
+            ).mappings().first()
+            if not pp:
+                raise ValueError(f"prompt_profile not found for user_id={uid}")
+            template = pp["conv_prompt"] if scene == "chat" else pp["wm_prompt"]
+            template = template or ""
+            kb_list: list[str] = pp["knowledge_base"] or []
+
+            # 参数选择
+            if scene == "chat":
+                short_keep = pp["chat_short_keep"] or 5
+                kb_k = pp["chat_kb_k"] or 3
+                long_k = pp["chat_long_k"] or 5
+            else:
+                short_keep = pp["wm_short_keep"] or 5
+                kb_k = pp["wm_kb_k"] or 3
+                long_k = pp["wm_long_k"] or 5
+
+        # 2. 短/工记忆
+        with Session(self.engine) as s:
+            shorts = s.scalars(
+                select(memory_doc_model.content)
+                .where(memory_doc_model.user_id == uid,
+                    memory_doc_model.mem_type == "short")
+                .order_by(memory_doc_model.id.desc())
+                .limit(short_keep)
+            ).all()
+            working = s.scalars(
+                select(memory_doc_model.content)
+                .where(memory_doc_model.user_id == uid,
+                    memory_doc_model.mem_type == "working")
+                .order_by(memory_doc_model.id.desc())
+            ).first()
+        short_memory   = "\n".join(reversed(shorts))
+        working_memory = working or ""
+
+        # 3. 长记忆
+        long_docs   = self.similarity_search(query, k=long_k)
+        long_memory = "\n".join(f"- {doc.page_content}" for doc, _ in long_docs)
+
+        # 4. 通用知识库（所有知识库混合）
+        kb_memory = ""
+        if kb_list and kb_k > 0:
+            all_kb_hits = []
+            for role_id in kb_list:
+                kb_hits = self.similarity_search_by_name(query, role_id, k=kb_k)
+                all_kb_hits.extend(kb_hits)
+            kb_memory = "\n".join(f"- {doc.page_content}" for doc, _ in all_kb_hits)
+
+        # 5. 动态识别并替换 {kb_memory_xxx} 占位符
+        kb_memories = {}
+        for m in re.finditer(r"\{kb_memory_([A-Za-z0-9_\-]+)\}", template):
+            kb_name = m.group(1)
+            value = ""
+            if kb_name in kb_list:
+                kb_hits = self.similarity_search_by_name(query, kb_name, k=kb_k)
+                value = "\n".join(f"- {doc.page_content}" for doc, _ in kb_hits)
+            kb_memories[f"kb_memory_{kb_name}"] = value
+
+        mapping = _SafeDict(
+            short_memory=short_memory,
+            working_memory=working_memory,
+            long_memory=long_memory,
+            kb_memory=kb_memory,
+            query=query,
+            **kb_memories
+        )
+        return template.format_map(mapping)
+
+
+
 
     @staticmethod
     def clear_all(pg_url: str, role_id: str) -> int:

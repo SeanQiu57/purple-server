@@ -48,19 +48,19 @@
 <body>
     <h1>九重Memory 调试界面</h1>
 
+    <!-- 新增导航到提示词控制台 -->
+    <nav style="margin-bottom:1rem;">
+        <button id="to-prompt">▶ 提示词控制台</button>
+    </nav>
     <script>
-        // 1. 读取已登录 user_id
-        const uid = localStorage.getItem('user_id');
-        if (!uid) {
-            alert('未检测到用户 ID，请先登录');
-            location.href = 'login.html';
-        }
+        document.getElementById('to-prompt').onclick = () => location.href = 'prompt.html';
     </script>
 
     <!-- 显示当前用户 & 退出登录 -->
     <section>
         <h2>👤 当前用户</h2>
         <div>
+            用户名：<strong id="display-username"></strong><br>
             用户 ID：<strong id="display-uid"></strong>
             <button id="logout-btn" style="margin-left:1rem; background:#e74c3c; color:#fff;">退出登录</button>
         </div>
@@ -89,12 +89,10 @@
     <section>
         <h2>✏️ 加载 & 编辑 短期 / 工作 记忆</h2>
         <button id="load-mem-btn">加载记忆</button>
-
         <div id="short-mem-container">
             <h3>短期记忆</h3>
             <div id="short-mem-list"></div>
         </div>
-
         <div id="working-mem-container">
             <h3>工作记忆</h3>
             <div id="working-mem-list"></div>
@@ -102,12 +100,41 @@
     </section>
 
     <script>
-        // 把 uid 显示到页面上
-        document.getElementById('display-uid').innerText = uid;
-        // 退出登录：清除并跳回 login.html
+        const token = localStorage.getItem('token');
+        if (!token) {
+            alert('未检测到登录令牌，请重新登录');
+            location.href = 'login.html';
+        }
+
+        // 拉 profile 并显示用户名和user_id
+        async function loadProfile() {
+            const r = await fetch('/prompt/me', {
+                headers: { Authorization: 'Bearer ' + token }
+            });
+            if (!r.ok) {
+                alert('获取用户信息失败，请重新登录');
+                localStorage.removeItem('token');
+                localStorage.removeItem('user_id');
+                localStorage.removeItem('username');
+                location.href = 'login.html';
+                return;
+            }
+            const profile = await r.json();
+            document.getElementById('display-username').innerText = profile.username || '';
+            document.getElementById('display-uid').innerText = profile.user_id || '';
+            // 写入本地存储
+            localStorage.setItem('username', profile.username || '');
+            localStorage.setItem('user_id', profile.user_id || '');
+            window.uid = profile.user_id;  // 兼容后面所有函数
+        }
+        loadProfile();
+
+        // 退出登录
         document.getElementById('logout-btn').onclick = () => {
             if (confirm('确认退出登录？')) {
                 localStorage.removeItem('user_id');
+                localStorage.removeItem('token');
+                localStorage.removeItem('username');
                 location.href = 'login.html';
             }
         };
@@ -123,6 +150,7 @@
             const out = document.getElementById("q-out");
             out.textContent = "";
             const q = document.getElementById("q-input").value.trim();
+            const uid = window.uid || localStorage.getItem('user_id');
             if (!q) return alert("请输入查询内容！");
             try {
                 const resp = await fetch(`/memory/query`, {
@@ -147,6 +175,7 @@
             out.textContent = "";
             const texts = document.getElementById("imp-texts").value
                 .split("\n").map(s => s.trim()).filter(s => s);
+            const uid = window.uid || localStorage.getItem('user_id');
             if (texts.length === 0) return alert("请先输入至少一段文本！");
             try {
                 const resp = await fetch(`/memory/import`, {
@@ -169,6 +198,7 @@
         document.getElementById("del-btn").onclick = async () => {
             const out = document.getElementById("imp-out");
             out.textContent = "";
+            const uid = window.uid || localStorage.getItem('user_id');
             if (!confirm("确定要清空长期记忆？不可恢复！")) return;
             try {
                 const resp = await fetch(`/memory/clear?user_id=${encodeURIComponent(uid)}`, {
@@ -187,6 +217,7 @@
 
         // 加载 & 编辑 短期 / 工作 记忆
         document.getElementById("load-mem-btn").onclick = async () => {
+            const uid = window.uid || localStorage.getItem('user_id');
             // 短期记忆
             try {
                 const resp = await fetch(`/memory/short?user_id=${encodeURIComponent(uid)}`);
@@ -233,6 +264,7 @@
             if (!e.target.matches(".save-short")) return;
             const id = e.target.dataset.id;
             const textarea = document.querySelector(`textarea[data-id="${id}"]`);
+            const uid = window.uid || localStorage.getItem('user_id');
             try {
                 const resp = await fetch("/memory/short", {
                     method: "PUT",
@@ -254,6 +286,7 @@
         document.body.addEventListener("click", async e => {
             if (e.target.id !== "save-working") return;
             const content = document.getElementById("working-text").value;
+            const uid = window.uid || localStorage.getItem('user_id');
             try {
                 const resp = await fetch("/memory/working", {
                     method: "PUT",

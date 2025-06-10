@@ -115,34 +115,13 @@ class MemoryProvider(MemoryProviderBase):
 
     # ---------- query_memory ----------
     async def query_memory(self, query: str) -> str:
-        """拼 prompt：短记忆 + 工作记忆 + 长记忆(similarity_search)"""
-        with Session(self.engine) as s:
-            shorts = s.scalars(
-                select(MemoryDoc.content)
-                .where(MemoryDoc.user_id == str(self.role_id),
-                       MemoryDoc.mem_type == 'short')
-                .order_by(MemoryDoc.id.desc())
-                .limit(self.SHORT_KEEP)
-            ).all()
-            working = s.scalars(
-                select(MemoryDoc.content)
-                .where(MemoryDoc.user_id == str(self.role_id),
-                       MemoryDoc.mem_type == 'working')
-                .order_by(MemoryDoc.id.desc())
-            ).first()
-        # ☆ 长期记忆检索
-        hidden_memory_docs = self.store.similarity_search_by_name(query,"sdt-practice", k=2)
-        hidden_memory = "\n".join(f"- {doc.page_content}" for doc, _ in hidden_memory_docs)
-        long_docs = self.store.similarity_search(query, k=3)
-        long_memory = "\n".join(f"- {doc.page_content}" for doc, _ in long_docs)    
-        short_memory = "\n".join(shorts[::-1])
-        prompt = (
-            f"【短期记忆】\n{short_memory}\n\n"
-            f"【SDT理论和实践的一些想法】\n{working}\n\n"
-            f"【长期记忆-突然想起你和主人之前的对话】\n{long_memory}\n\n"
-            f"【当前主人问你的话】\n{query}\n\n"
-            f"【潜意识】：一些SDT理论在无意识中指导你的对话\n{hidden_memory}\n"
+        """使用 build_prompt 构造提示词"""
+        prompt = await self.store.build_prompt(
+            query=query,
+            memory_doc_model=MemoryDoc,
+            scene="chat"
         )
+        logger.info(f"{TAG} query_memory: {query} -> {prompt}")
         return prompt
 
     # ------------------------ 写入 ------------------------
@@ -182,7 +161,7 @@ class MemoryProvider(MemoryProviderBase):
             )
         if short_cnt > self.SHORT_KEEP:
             asyncio.create_task(self._async_consolidate())
-
+            
     # ------------------------ 后台摘要 + 弹出 ------------------------
     def _consolidate_sync(self):
         """
@@ -191,146 +170,34 @@ class MemoryProvider(MemoryProviderBase):
         """
         try:
             with Session(self.engine) as s:
-                # ① 取出该用户所有短期记忆（按 id 升序 = 时间顺序）
-                shorts_all: list[MemoryDoc] = s.scalars(
+                # 获取需要合并的短期记忆
+                pop_rows = s.scalars(
                     select(MemoryDoc)
-                    .where(
-                        MemoryDoc.user_id == str(self.role_id),
-                        MemoryDoc.mem_type == "short",
-                    )
+                    .where(MemoryDoc.user_id == str(self.role_id), MemoryDoc.mem_type == "short")
                     .order_by(MemoryDoc.id.asc())
+                    .limit(self.LONG_BATCH)
                 ).all()
-
-                # ② 计算需要“弹出”写入长期记忆的条目
-                pop_rows = shorts_all[: self.LONG_BATCH] if len(shorts_all) > self.SHORT_KEEP else []
-                remaining_short = shorts_all[len(pop_rows) :]      # 保留下来的短期记忆
-
-                # ③ 先把 short_block 设为空，保证后续引用安全
-                short_block = ""
-                if remaining_short:
-                    short_block = "\n".join(
-                        r.content for r in remaining_short[-self.SHORT_KEEP :]
+                
+                if not pop_rows:
+                    return
+                
+                # 构建用于反思的内容
+                memories_to_reflect = "\n".join([row.content for row in pop_rows])
+                
+                # 直接调用 build_prompt 生成工作记忆的提示词
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+                try:
+                    user_query = loop.run_until_complete(
+                        self.store.build_prompt(
+                            query=f"基于以下记忆进行反思和总结：\n{memories_to_reflect}",
+                            memory_doc_model=MemoryDoc,
+                            scene="workingmem"
+                        )
                     )
-
-                # ④ 写 pop_rows 到向量库（每 SECTION_SIZE 条打包）
-                for i in range(0, len(pop_rows), self.SECTION_SIZE):
-                    batch = pop_rows[i : i + self.SECTION_SIZE]
-                    text_block = "\n".join(r.content for r in batch)
-                    if text_block.strip():
-                        self.store.add_text(text_block)
-
-                # ⑤ 删除已写入的 pop_rows，只 commit 一次
-                if pop_rows:
-                    for r in pop_rows:
-                        s.delete(r)
-                    s.commit()
-
-                # ⑥ 准备 query、检索长期记忆
-                query = short_block + self._summary
-
-                #   - SDT 理论/实践 文献召回
-                sdt_theory_docs = self.store.similarity_search_by_name(
-                    query, "sdt-theory", k=5
-                )
-                sdt_theory_memory = "\n".join(f"- {doc.page_content}" for doc, _ in sdt_theory_docs)
-
-                sdt_practice_docs = self.store.similarity_search_by_name(
-                    query, "sdt-practice", k=5
-                )
-                sdt_practice_memory = "\n".join(f"- {doc.page_content}" for doc, _ in sdt_practice_docs)
-
-                #   - 当前用户自己的长期记忆
-                long_docs = self.store.similarity_search(query, k=50)
-                long_memory = "\n".join(f"- {doc.page_content}" for doc, _ in long_docs)
-
-                # ⑦ 构造 prompt 让 LLM 生成新工作记忆
-                user_query = (
-                    f"""请严格按照以下结构与要求，生成高质量、有信息密度的输出内容：
-
-                ---
-
-                ### 部分一：迭代更新工作记忆（限1500字）
-
-                请迭代更新上一次生成的工作记忆，之前的内容为：
-                “{self._summary}”
-
-                基于以下给出的信息进行更新：
-
-                * **用户与阿紫最近的对话摘要（短期记忆）**：
-                “{short_block}”
-
-                * **检索到的SDT（自我决定理论）相关理论章节**：
-                “{sdt_theory_memory}”
-
-                #### 生成要求：
-
-                * 仅基于SDT理论进行分析，禁止引入其他理论或个人主观发挥。
-                * 仅当用户在对话中明确展现出具体问题或心理机制时，才生成对应的解释分析；如无具体问题暴露，可不生成。
-                * 表述必须精炼，用最少的字表达最多的信息。
-                * 严格使用如下结构化编号格式：
-
-                理论解释一：……
-                理论解释二：……
-                理论依据：……
-
-                ---
-
-                ### 部分二：SDT理论的实践应用建议
-
-                请根据SDT理论中的“实践应用”章节内容：
-                “{sdt_practice_memory}”
-
-                结合用户与阿紫之间的实际对话内容，提供切实可行的实践建议。
-
-                #### 生成要求：
-
-                * 仅限SDT理论推导，不允许凭空发挥或引用其他理论。
-                * 如果SDT理论本身不足以提供明确支持，则可跳过该部分，不必强行生成。
-                * 必须严格遵循如下格式进行输出：
-
-                建议一（简要陈述）：……
-                实践解释：说明该建议如何具体落地，如何在实际对话中体现。
-
-                建议二（简要陈述）：……
-                实践解释：说明该建议如何具体落地，如何在实际对话中体现。
-
-                （根据实际情况依次类推）
-
-                ---
-
-                ### 部分三：根据记忆总结你的性格特质（600字左右）
-
-                请综合参考以下信息：
-
-                * 【当前短期记忆】
-                * 【相关长期记忆】
-                “{long_memory}”
-
-                客观且深入地总结你的性格和特质。
-
-                示例格式：
-                我自己的性格：内向、细心、善于倾听，喜欢独立思考和深度分析问题……我曾经……
-
-                ---
-
-                ### 整体输出示例
-
-                基于当前对话，可以使用的SDT理论：
-                理论解释一：
-                理论解释二：
-                理论依据：
-
-                基于对话，可以根据SDT提出的实践建议：
-                建议一（简要陈述）：……
-                实践解释：……
-
-                建议二（简要陈述）：……
-                实践解释：……
-
-                我自己的性格：……
-                """
-                )
-
+                finally:
+                    loop.close()
+                
                 resp = self.ark_client.chat.completions.create(
                     model=self.ARK_MODEL_ID,
                     messages=[
@@ -342,7 +209,16 @@ class MemoryProvider(MemoryProviderBase):
                 logger.info(
                     f"////////////////new summary for {self.role_id}:\n{self._summary};//////////////query::{user_query}",
                 )
-                # ⑧ 更新/插入新的工作记忆
+                
+                # 将短期记忆转为长期记忆
+                for row in pop_rows:
+                    self.store.add_text(row.content)
+                
+                # 删除已处理的短期记忆
+                for row in pop_rows:
+                    s.delete(row)
+                
+                # 更新/插入新的工作记忆
                 s.execute(
                     text(
                         "DELETE FROM memory_doc "
@@ -360,16 +236,15 @@ class MemoryProvider(MemoryProviderBase):
                 s.commit()
 
             logger.info(
-                "[Memory] consolidate done for %s | pop=%d, remain=%d",
-                self.role_id, len(pop_rows), len(remaining_short)
+                "[Memory] consolidate done for %s | processed=%d records",
+                self.role_id, len(pop_rows)
             )
 
         except Exception as e:
             logger.exception(
                 "[Memory] consolidate crash for %s: %s",
-                self.role_id, e, exc_info=True
+                self.role_id, e
             )
-
 
     async def _async_consolidate(self):
         await asyncio.to_thread(self._consolidate_sync)
