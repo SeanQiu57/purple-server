@@ -1,12 +1,12 @@
-PyYAML>=6
-# torch (skip here, use gar310 torch=2.3.1+cpu)
+pyyml==0.0.2
+torch>=2.5.0
 silero_vad==5.1.2
 websockets==14.2
 opuslib_next==1.1.2
 numpy==1.26.4
 pydub==0.25.1
 funasr==1.2.3
-# torch (skip here, use gar310 torch=2.3.1+cpu)
+torchaudio>=2.5.0
 openai==1.61.0
 google-generativeai==0.8.4
 edge_tts==7.0.0

@@ -66,7 +66,8 @@ class ConnectionHandler:
         self.auth = AuthMiddleware(config)
         self.need_bind = False
         self.bind_code = None
-        self.read_config_from_api = self.config.get("read_config_from_api", False)
+        self.read_config_from_api = self.config.get(
+            "read_config_from_api", False)
 
         self.websocket = None
         self.headers = None
@@ -217,7 +218,8 @@ class ConnectionHandler:
             return
         except Exception as e:
             stack_trace = traceback.format_exc()
-            self.logger.bind(tag=TAG).error(f"Connection error: {str(e)}-{stack_trace}")
+            self.logger.bind(tag=TAG).error(
+                f"Connection error: {str(e)}-{stack_trace}")
             return
         finally:
             await self._save_and_close(ws)
@@ -262,6 +264,10 @@ class ConnectionHandler:
         if isinstance(message, str):
             await handleTextMessage(self, message)
         elif isinstance(message, bytes):
+            try:
+                self.logger.bind(tag=TAG).debug(f"received audio bytes: len={len(message)}")
+            except Exception:
+                pass
             await handleAudioMessage(self, message)
 
     async def handle_restart(self, message):
@@ -358,7 +364,8 @@ class ConnectionHandler:
                 self.headers.get("device-id"),
                 self.headers.get("client-id", self.headers.get("device-id")),
             )
-            private_config["delete_audio"] = bool(self.config.get("delete_audio", True))
+            private_config["delete_audio"] = bool(
+                self.config.get("delete_audio", True))
             self.logger.bind(tag=TAG).info(
                 f"{time.time() - begin_time} 秒，获取差异化配置成功: {json.dumps(filter_sensitive_info(private_config), ensure_ascii=False)}"
             )
@@ -413,7 +420,8 @@ class ConnectionHandler:
         if private_config.get("summaryMemory", None) is not None:
             self.config["summaryMemory"] = private_config["summaryMemory"]
         if private_config.get("device_max_output_size", None) is not None:
-            self.max_output_size = int(private_config["device_max_output_size"])
+            self.max_output_size = int(
+                private_config["device_max_output_size"])
         if private_config.get("chat_history_conf", None) is not None:
             self.chat_history_conf = int(private_config["chat_history_conf"])
         try:
@@ -479,7 +487,8 @@ class ConnectionHandler:
                 from core.utils import llm as llm_utils
 
                 intent_llm_config = self.config["LLM"][intent_llm_name]
-                intent_llm_type = intent_llm_config.get("type", intent_llm_name)
+                intent_llm_type = intent_llm_config.get(
+                    "type", intent_llm_name)
                 intent_llm = llm_utils.create_instance(
                     intent_llm_type, intent_llm_config
                 )
@@ -519,11 +528,14 @@ class ConnectionHandler:
                 future = asyncio.run_coroutine_threadsafe(
                     self.memory.query_memory(query), self.loop
                 )
-                memory_str = future.result()
+                memory_str = future.result(timeout=5)
 
-            self.logger.bind(tag=TAG).debug(f"记忆内容: {memory_str}")
+            self.logger.bind(tag=TAG).warning(f"记忆内容: {memory_str}")
+            req = self.dialogue.get_llm_dialogue_with_memory(
+                memory_str)
+            print("req", req)
             llm_responses = self.llm.response(
-                self.session_id, self.dialogue.get_llm_dialogue_with_memory(memory_str)
+                self.session_id, req
             )
         except Exception as e:
             self.logger.bind(tag=TAG).error(f"LLM 处理出错 {query}: {e}")
@@ -556,7 +568,8 @@ class ConnectionHandler:
             # 找到分割点则处理
             if last_punct_pos != -1:
                 segment_text_raw = current_text[: last_punct_pos + 1]
-                segment_text = get_string_no_punctuation_or_emoji(segment_text_raw)
+                segment_text = get_string_no_punctuation_or_emoji(
+                    segment_text_raw)
                 if segment_text:
                     # 强制设置空字符，测试TTS出错返回语音的健壮性
                     # if text_index % 2 == 0:
@@ -583,15 +596,18 @@ class ConnectionHandler:
                 self.tts_queue.put((future, text_index))
 
         self.llm_finish_task = True
-        self.dialogue.put(Message(role="assistant", content="".join(response_message)))
+        self.dialogue.put(
+            Message(role="assistant", content="".join(response_message)))
         self.logger.bind(tag=TAG).debug(
-            json.dumps(self.dialogue.get_llm_dialogue(), indent=4, ensure_ascii=False)
+            json.dumps(self.dialogue.get_llm_dialogue(),
+                       indent=4, ensure_ascii=False)
         )
         # self._async_save_memory()
         return True
 
     def chat_with_function_calling(self, query, tool_call=False):
-        self.logger.bind(tag=TAG).debug(f"Chat with function calling start: {query}")
+        self.logger.bind(tag=TAG).debug(
+            f"Chat with function calling start: {query}")
         """Chat with function calling for intent detection using streaming"""
 
         if not tool_call:
@@ -609,13 +625,11 @@ class ConnectionHandler:
 
             # 使用带记忆的对话
             memory_str = None
-            if self.memory is not None:
-                future = asyncio.run_coroutine_threadsafe(
-                    self.memory.query_memory(query), self.loop
-                )
-                memory_str = future.result()
-
-            # self.logger.bind(tag=TAG).info(f"对话记录: {self.dialogue.get_llm_dialogue_with_memory(memory_str)}")
+            # if self.memory is not None:
+            #     future = asyncio.run_coroutine_threadsafe(
+            #         self.memory.query_memory(query), self.loop
+            #     )
+            #     memory_str = future.result()
 
             # 使用支持functions的streaming接口
             llm_responses = self.llm.response_with_functions(
@@ -675,12 +689,14 @@ class ConnectionHandler:
                     current_text = full_text[processed_chars:]  # 从未处理的位置开始
 
                     # 查找最后一个有效标点
-                    punctuations = ("。", ".", "？", "?", "！", "!", "；", ";", "：")
+                    punctuations = ("。", ".", "？", "?",
+                                    "！", "!", "；", ";", "：")
                     last_punct_pos = -1
                     number_flag = True
                     for punct in punctuations:
                         pos = current_text.rfind(punct)
-                        prev_char = current_text[pos - 1] if pos - 1 >= 0 else ""
+                        prev_char = current_text[pos -
+                                                 1] if pos - 1 >= 0 else ""
                         # 如果.前面是数字统一判断为小数
                         if prev_char.isdigit() and punct == ".":
                             number_flag = False
@@ -695,7 +711,8 @@ class ConnectionHandler:
                         )
                         if segment_text:
                             text_index += 1
-                            self.recode_first_last_text(segment_text, text_index)
+                            self.recode_first_last_text(
+                                segment_text, text_index)
                             future = self.executor.submit(
                                 self.speak_and_play, segment_text, text_index
                             )
@@ -745,7 +762,8 @@ class ConnectionHandler:
                     result = self.func_handler.handle_llm_function_call(
                         self, function_call_data
                     )
-                self._handle_function_result(result, function_call_data, text_index + 1)
+                self._handle_function_result(
+                    result, function_call_data, text_index + 1)
 
         # 处理最后剩余的文本
         full_text = "".join(response_message)
@@ -768,7 +786,8 @@ class ConnectionHandler:
 
         self.llm_finish_task = True
         self.logger.bind(tag=TAG).debug(
-            json.dumps(self.dialogue.get_llm_dialogue(), indent=4, ensure_ascii=False)
+            json.dumps(self.dialogue.get_llm_dialogue(),
+                       indent=4, ensure_ascii=False)
         )
         self._async_save_memory()
         return True
@@ -790,7 +809,8 @@ class ConnectionHandler:
                     )
 
             tool_result = asyncio.run_coroutine_threadsafe(
-                self.mcp_manager.execute_tool(function_name, args_dict), self.loop
+                self.mcp_manager.execute_tool(
+                    function_name, args_dict), self.loop
             ).result()
             # meta=None content=[TextContent(type='text', text='北京当前天气:\n温度: 21°C\n天气: 晴\n湿度: 6%\n风向: 西北 风\n风力等级: 5级', annotations=None)] isError=False
             content_text = ""
@@ -819,7 +839,8 @@ class ConnectionHandler:
         if result.action == Action.RESPONSE:  # 直接回复前端
             text = result.response
             self.recode_first_last_text(text, text_index)
-            future = self.executor.submit(self.speak_and_play, text, text_index)
+            future = self.executor.submit(
+                self.speak_and_play, text, text_index)
             self.tts_queue.put((future, text_index))
             self.dialogue.put(Message(role="assistant", content=text))
         elif result.action == Action.REQLLM:  # 调用函数后再请求llm生成回复
@@ -858,7 +879,8 @@ class ConnectionHandler:
         elif result.action == Action.NOTFOUND or result.action == Action.ERROR:
             text = result.result
             self.recode_first_last_text(text, text_index)
-            future = self.executor.submit(self.speak_and_play, text, text_index)
+            future = self.executor.submit(
+                self.speak_and_play, text, text_index)
             self.tts_queue.put((future, text_index))
             self.dialogue.put(Message(role="assistant", content=text))
         else:
@@ -899,9 +921,11 @@ class ConnectionHandler:
                         )
                         if os.path.exists(tts_file):
                             if self.audio_format == "pcm":
-                                audio_datas, _ = self.tts.audio_to_pcm_data(tts_file)
+                                audio_datas, _ = self.tts.audio_to_pcm_data(
+                                    tts_file)
                             else:
-                                audio_datas, _ = self.tts.audio_to_opus_data(tts_file)
+                                audio_datas, _ = self.tts.audio_to_opus_data(
+                                    tts_file)
                             # 在这里上报TTS数据
                             enqueue_tts_report(self, text, audio_datas)
                         else:
@@ -945,13 +969,15 @@ class ConnectionHandler:
             text = None
             try:
                 try:
-                    audio_datas, text, text_index = self.audio_play_queue.get(timeout=1)
+                    audio_datas, text, text_index = self.audio_play_queue.get(
+                        timeout=1)
                 except queue.Empty:
                     if self.stop_event.is_set():
                         break
                     continue
                 future = asyncio.run_coroutine_threadsafe(
-                    sendAudioMessage(self, audio_datas, text, text_index), self.loop
+                    sendAudioMessage(self, audio_datas, text,
+                                     text_index), self.loop
                 )
                 future.result()
             except Exception as e:
@@ -1091,7 +1117,7 @@ class ConnectionHandler:
                     break
         except Exception as e:
             self.logger.bind(tag=TAG).error(f"超时检查任务出错: {e}")
-    
+
     # connection.py  ── 放在 class ConnectionHandler 里，和其他方法平行
     def _async_save_memory(self):
         """把 self.dialogue.dialogue 交给 MemoryProvider 保存，后台异步执行"""
@@ -1105,4 +1131,3 @@ class ConnectionHandler:
             )
         except Exception as e:
             self.logger.bind(tag=TAG).error(f"异步保存记忆失败: {e}")
-
