@@ -1,0 +1,553 @@
+2026-03-11 02:02:38 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: tts成功 EdgeTTS
+2026-03-11 02:02:38 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: llm成功 DoubaoLLM
+2026-03-11 02:02:38 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: intent成功 nointent
+2026-03-11 02:02:38 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 尝试加载记忆插件 `nomem`，路径=core/providers/memory/nomem/nomem.py
+2026-03-11 02:02:38 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 模块 import 成功: core.providers.memory.nomem.nomem
+2026-03-11 02:02:38 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 实例化 MemoryProvider 成功: nomem
+2026-03-11 02:02:38 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: memory成功 nomem
+2026-03-11 02:02:39 - 0.4.4_SiBaDoEdnono - core.providers.vad.silero - INFO - core.providers.vad.silero - SileroVAD
+2026-03-11 02:06:18 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: tts成功 EdgeTTS
+2026-03-11 02:06:18 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: llm成功 DoubaoLLM
+2026-03-11 02:06:18 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: intent成功 nointent
+2026-03-11 02:06:18 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 尝试加载记忆插件 `nomem`，路径=core/providers/memory/nomem/nomem.py
+2026-03-11 02:06:18 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 模块 import 成功: core.providers.memory.nomem.nomem
+2026-03-11 02:06:18 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 实例化 MemoryProvider 成功: nomem
+2026-03-11 02:06:18 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: memory成功 nomem
+2026-03-11 02:06:19 - 0.4.4_SiBaDoEdnono - core.providers.vad.silero - INFO - core.providers.vad.silero - SileroVAD
+2026-03-11 02:06:19 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: vad成功 SileroVAD
+2026-03-11 02:06:19 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: asr成功 BaiduASR
+2026-03-11 02:06:19 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - OTA接口是		http://192.168.0.2:8002/xiaozhi/ota/
+2026-03-11 02:06:19 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - Websocket地址是	ws://192.168.0.2:8000/xiaozhi/v1/
+2026-03-11 02:06:19 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - =======上面的地址是websocket协议地址，请勿用浏览器访问=======
+2026-03-11 02:06:19 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - 如想测试websocket请用谷歌浏览器打开test目录下的test_page.html
+2026-03-11 02:06:19 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - =============================================================
+
+2026-03-11 02:06:32 - 0.4.4_SiBaDoEdnono - core.ota_server - INFO - core.ota_server - OTA请求设备ID: b8:f8:62:f6:be:f4
+2026-03-11 02:06:34 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 127.0.0.1 conn - Headers: {'upgrade': 'websocket', 'connection': 'upgrade', 'host': 'lee.seangaming.site', 'x-real-ip': '186.22.56.72', 'x-forwarded-for': '186.22.56.72', 'x-forwarded-proto': 'https', 'pragma': 'no-cache', 'cache-control': 'no-cache', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36', 'origin': 'https://lee.seangaming.site', 'sec-websocket-version': '13', 'accept-encoding': 'gzip, deflate, br, zstd', 'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8', 'sec-websocket-key': 'njYVl9T2iEkaRXgcpBOBgw==', 'sec-websocket-extensions': 'permessage-deflate; client_max_window_bits', 'device-id': 'b8:f8:62:f6:be:f4', 'client-id': 'web_test_client'}
+2026-03-11 02:06:34 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 初始化组件: prompt成功 ...
+2026-03-11 02:06:34 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到hello消息：{"type":"hello","device_id":"b8:f8:62:f6:be:f4","device_name":"Web测试设备","device_mac":"b8:f8:62:f6:be:f4","token":"your-token1"}
+2026-03-11 02:06:41 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到listen消息：{"type":"listen","mode":"manual","state":"start"}
+2026-03-11 02:06:43 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到listen消息：{"type":"listen","mode":"manual","state":"stop"}
+2026-03-11 02:06:43 - 0.4.4_SiBaDoEdnono - core.providers.asr.baidu - ERROR - core.providers.asr.baidu - 处理音频时发生错误！400 Client Error: Bad Request for url: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+2026-03-11 02:06:43 - 0.4.4_SiBaDoEdnono - core.handle.receiveAudioHandle - INFO - core.handle.receiveAudioHandle - 识别文本: None
+2026-03-11 02:06:43 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - Connection error: 'NoneType' object is not iterable-Traceback (most recent call last):
+  File "/root/purple-server-ubantuversion/main/xiaozhi-server/core/connection.py", line 212, in handle_connection
+    await self._route_message(message)
+  File "/root/purple-server-ubantuversion/main/xiaozhi-server/core/connection.py", line 265, in _route_message
+    await handleTextMessage(self, message)
+  File "/root/purple-server-ubantuversion/main/xiaozhi-server/core/handle/textHandle.py", line 42, in handleTextMessage
+    await handleAudioMessage(conn, b"")
+  File "/root/purple-server-ubantuversion/main/xiaozhi-server/core/handle/receiveAudioHandle.py", line 44, in handleAudioMessage
+    text_len, _ = remove_punctuation_and_length(raw_text)
+  File "/root/purple-server-ubantuversion/main/xiaozhi-server/core/utils/util.py", line 171, in remove_punctuation_and_length
+    [
+TypeError: 'NoneType' object is not iterable
+
+2026-03-11 02:06:44 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 连接资源已释放
+2026-03-11 02:06:48 - 0.4.4_SiBaDoEdnono - core.ota_server - INFO - core.ota_server - OTA请求设备ID: b8:f8:62:f6:be:f4
+2026-03-11 02:06:49 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 127.0.0.1 conn - Headers: {'upgrade': 'websocket', 'connection': 'upgrade', 'host': 'lee.seangaming.site', 'x-real-ip': '186.22.56.72', 'x-forwarded-for': '186.22.56.72', 'x-forwarded-proto': 'https', 'pragma': 'no-cache', 'cache-control': 'no-cache', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36', 'origin': 'https://lee.seangaming.site', 'sec-websocket-version': '13', 'accept-encoding': 'gzip, deflate, br, zstd', 'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8', 'sec-websocket-key': '8CaabXNCctmLbMceJBmYDw==', 'sec-websocket-extensions': 'permessage-deflate; client_max_window_bits', 'device-id': 'b8:f8:62:f6:be:f4', 'client-id': 'web_test_client'}
+2026-03-11 02:06:49 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 初始化组件: prompt成功 ...
+2026-03-11 02:06:49 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到hello消息：{"type":"hello","device_id":"b8:f8:62:f6:be:f4","device_name":"Web测试设备","device_mac":"b8:f8:62:f6:be:f4","token":"your-token1"}
+2026-03-11 02:09:47 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 连接资源已释放
+2026-03-11 02:09:50 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: tts成功 EdgeTTS
+2026-03-11 02:09:50 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: llm成功 DoubaoLLM
+2026-03-11 02:09:50 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: intent成功 nointent
+2026-03-11 02:09:50 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 尝试加载记忆插件 `nomem`，路径=core/providers/memory/nomem/nomem.py
+2026-03-11 02:09:50 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 模块 import 成功: core.providers.memory.nomem.nomem
+2026-03-11 02:09:50 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 实例化 MemoryProvider 成功: nomem
+2026-03-11 02:09:50 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: memory成功 nomem
+2026-03-11 02:09:51 - 0.4.4_SiBaDoEdnono - core.providers.vad.silero - INFO - core.providers.vad.silero - SileroVAD
+2026-03-11 02:09:51 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: vad成功 SileroVAD
+2026-03-11 02:09:51 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: asr成功 BaiduASR
+2026-03-11 02:09:51 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - OTA接口是		http://192.168.0.2:8002/xiaozhi/ota/
+2026-03-11 02:09:51 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - Websocket地址是	ws://192.168.0.2:8000/xiaozhi/v1/
+2026-03-11 02:09:51 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - =======上面的地址是websocket协议地址，请勿用浏览器访问=======
+2026-03-11 02:09:51 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - 如想测试websocket请用谷歌浏览器打开test目录下的test_page.html
+2026-03-11 02:09:51 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - =============================================================
+
+2026-03-11 02:09:55 - 0.4.4_SiBaDoEdnono - core.ota_server - INFO - core.ota_server - OTA请求设备ID: b8:f8:62:f6:be:f4
+2026-03-11 02:09:57 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 127.0.0.1 conn - Headers: {'upgrade': 'websocket', 'connection': 'upgrade', 'host': 'lee.seangaming.site', 'x-real-ip': '186.22.56.72', 'x-forwarded-for': '186.22.56.72', 'x-forwarded-proto': 'https', 'pragma': 'no-cache', 'cache-control': 'no-cache', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36', 'origin': 'https://lee.seangaming.site', 'sec-websocket-version': '13', 'accept-encoding': 'gzip, deflate, br, zstd', 'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8', 'sec-websocket-key': '9E0D2ydZf6bJha7qKql4Xg==', 'sec-websocket-extensions': 'permessage-deflate; client_max_window_bits', 'device-id': 'b8:f8:62:f6:be:f4', 'client-id': 'web_test_client'}
+2026-03-11 02:09:57 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 初始化组件: prompt成功 ...
+2026-03-11 02:09:57 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到hello消息：{"type":"hello","device_id":"b8:f8:62:f6:be:f4","device_name":"Web测试设备","device_mac":"b8:f8:62:f6:be:f4","token":"your-token1"}
+2026-03-11 02:09:58 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到listen消息：{"type":"listen","mode":"manual","state":"start"}
+2026-03-11 02:09:59 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到listen消息：{"type":"listen","mode":"manual","state":"stop"}
+2026-03-11 02:10:00 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - Connection error: "'error'"-Traceback (most recent call last):
+  File "/root/purple-server-ubantuversion/main/xiaozhi-server/core/providers/asr/baidu.py", line 147, in speech_to_text
+    completion = self.client.chat.completions.create(
+  File "/root/miniconda3/envs/gar310/lib/python3.10/site-packages/openai/_utils/_utils.py", line 279, in wrapper
+    return func(*args, **kwargs)
+  File "/root/miniconda3/envs/gar310/lib/python3.10/site-packages/openai/resources/chat/completions.py", line 863, in create
+    return self._post(
+  File "/root/miniconda3/envs/gar310/lib/python3.10/site-packages/openai/_base_client.py", line 1283, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/root/miniconda3/envs/gar310/lib/python3.10/site-packages/openai/_base_client.py", line 960, in request
+    return self._request(
+  File "/root/miniconda3/envs/gar310/lib/python3.10/site-packages/openai/_base_client.py", line 1064, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': '<400> InternalError.Algo.InvalidParameter: The provided URL does not appear to be valid. Ensure it is correctly formatted.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-6b3a28fb-559b-9ff7-bed0-b1fdf69da302', 'request_id': '6b3a28fb-559b-9ff7-bed0-b1fdf69da302'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/purple-server-ubantuversion/main/xiaozhi-server/core/connection.py", line 212, in handle_connection
+    await self._route_message(message)
+  File "/root/purple-server-ubantuversion/main/xiaozhi-server/core/connection.py", line 265, in _route_message
+    await handleTextMessage(self, message)
+  File "/root/purple-server-ubantuversion/main/xiaozhi-server/core/handle/textHandle.py", line 42, in handleTextMessage
+    await handleAudioMessage(conn, b"")
+  File "/root/purple-server-ubantuversion/main/xiaozhi-server/core/handle/receiveAudioHandle.py", line 42, in handleAudioMessage
+    raw_text, _ = await conn.asr.speech_to_text(conn.asr_audio, conn.session_id)  # 确保ASR模块返回原始文本
+  File "/root/purple-server-ubantuversion/main/xiaozhi-server/core/providers/asr/baidu.py", line 166, in speech_to_text
+    logger.bind(tag=TAG).error(f"处理音频时发生错误！{e}", exc_info=True)
+  File "/root/miniconda3/envs/gar310/lib/python3.10/site-packages/loguru/_logger.py", line 2090, in error
+    __self._log("ERROR", False, __self._options, __message, args, kwargs)
+  File "/root/miniconda3/envs/gar310/lib/python3.10/site-packages/loguru/_logger.py", line 2055, in _log
+    log_record["message"] = message.format(*args, **kwargs)
+KeyError: "'error'"
+
+2026-03-11 02:10:00 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 连接资源已释放
+2026-03-11 02:22:11 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: tts成功 EdgeTTS
+2026-03-11 02:22:12 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: llm成功 DoubaoLLM
+2026-03-11 02:22:12 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: intent成功 nointent
+2026-03-11 02:22:12 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 尝试加载记忆插件 `nomem`，路径=core/providers/memory/nomem/nomem.py
+2026-03-11 02:22:12 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 模块 import 成功: core.providers.memory.nomem.nomem
+2026-03-11 02:22:12 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 实例化 MemoryProvider 成功: nomem
+2026-03-11 02:22:12 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: memory成功 nomem
+2026-03-11 02:22:13 - 0.4.4_SiBaDoEdnono - core.providers.vad.silero - INFO - core.providers.vad.silero - SileroVAD
+2026-03-11 02:22:13 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: vad成功 SileroVAD
+2026-03-11 02:22:13 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: asr成功 BaiduASR
+2026-03-11 02:22:13 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - OTA接口是		http://192.168.0.2:8002/xiaozhi/ota/
+2026-03-11 02:22:13 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - Websocket地址是	ws://192.168.0.2:8000/xiaozhi/v1/
+2026-03-11 02:22:13 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - =======上面的地址是websocket协议地址，请勿用浏览器访问=======
+2026-03-11 02:22:13 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - 如想测试websocket请用谷歌浏览器打开test目录下的test_page.html
+2026-03-11 02:22:13 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - =============================================================
+
+2026-03-11 02:22:20 - 0.4.4_SiBaDoEdnono - core.ota_server - INFO - core.ota_server - OTA请求设备ID: b8:f8:62:f6:be:f4
+2026-03-11 02:22:21 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 127.0.0.1 conn - Headers: {'upgrade': 'websocket', 'connection': 'upgrade', 'host': 'lee.seangaming.site', 'x-real-ip': '186.22.56.72', 'x-forwarded-for': '186.22.56.72', 'x-forwarded-proto': 'https', 'pragma': 'no-cache', 'cache-control': 'no-cache', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36', 'origin': 'https://lee.seangaming.site', 'sec-websocket-version': '13', 'accept-encoding': 'gzip, deflate, br, zstd', 'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8', 'sec-websocket-key': '85ZuUjEB1EIl1wKo+59EtQ==', 'sec-websocket-extensions': 'permessage-deflate; client_max_window_bits', 'device-id': 'b8:f8:62:f6:be:f4', 'client-id': 'web_test_client'}
+2026-03-11 02:22:21 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 初始化组件: prompt成功 ...
+2026-03-11 02:22:22 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到hello消息：{"type":"hello","device_id":"b8:f8:62:f6:be:f4","device_name":"Web测试设备","device_mac":"b8:f8:62:f6:be:f4","token":"your-token1"}
+2026-03-11 02:22:24 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到listen消息：{"type":"listen","mode":"manual","state":"start"}
+2026-03-11 02:22:25 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到listen消息：{"type":"listen","mode":"manual","state":"stop"}
+2026-03-11 02:22:26 - 0.4.4_SiBaDoEdnono - core.handle.receiveAudioHandle - INFO - core.handle.receiveAudioHandle - 识别文本: 测试语音。
+2026-03-11 02:22:26 - 0.4.4_SiBaDoEdnono - core.connection - WARNING - core.connection - 记忆内容: 
+2026-03-11 02:22:27 - 0.4.4_SiBaDoEdnono - core.providers.llm.openai.openai - INFO - core.providers.llm.openai.openai - LLm SEND content[{'role': 'system', 'content': ''}, {'role': 'user', 'content': '测试语音。'}]with conv_id cefaca6b-d4f0-4532-baef-d1e1ddbb28b7
+2026-03-11 02:22:27 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 大模型说出第一句话: 我目前是一个纯文本模型，无法直接处理或测试语音功能。
+2026-03-11 02:22:28 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 我目前是一个纯文本模型，无法直接处理或测试语音功能。，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=815dcbba147f4c8db61addf3b095a550')
+2026-03-11 02:22:29 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 不过，如果您想测试语音相关功能，可以尝试以下方法，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=b4513f47baea47b18989b1536af797f6')
+2026-03-11 02:22:30 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败2次: 我目前是一个纯文本模型，无法直接处理或测试语音功能。，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=661650ea85b2433da55e25badb541c68')
+2026-03-11 02:22:30 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败2次: 不过，如果您想测试语音相关功能，可以尝试以下方法，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=7fcedf7e0e964234b4ef293ff64fde1d')
+2026-03-11 02:22:31 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败3次: 我目前是一个纯文本模型，无法直接处理或测试语音功能。，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=913a0d01a4bd4307b18222abe03463bd')
+2026-03-11 02:22:31 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败3次: 不过，如果您想测试语音相关功能，可以尝试以下方法，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=f1e8efe3e74d4adcbe8a6ffc12d74df5')
+2026-03-11 02:22:32 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败4次: 我目前是一个纯文本模型，无法直接处理或测试语音功能。，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=70af86ec68364ad9a02948189fcf0de2')
+2026-03-11 02:22:33 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败4次: 不过，如果您想测试语音相关功能，可以尝试以下方法，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=73aa6bd4d0c54841bea8a6710b0eb705')
+2026-03-11 02:22:33 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 1. 设备自带工具  
+- 手机/电脑的录音机应用
+- 系统语音识别（如Windows语音识别、Android的Google语音助手）
+2. 在线语音工具  
+- 语音生成：Google Text-to-Speech、Azure TTS  
+- 语音识别：SpeechTexter、Web Speech API演示
+3. 开发测试  
+   如果您是开发者，可用以下库进行测试：
+   ```python
+   # 示例：使用pyttsx3文本转语音（Python）
+   import pyttsx3
+   engine = pyttsx3.init()
+   engine.，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=58c1e20db6b94ec59a068544fd3b10b0')
+2026-03-11 02:22:34 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: say("测试语音播放")
+   engine.，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=6bdf10304a8f4f4480ae4dcc0b3de5b8')
+2026-03-11 02:22:34 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败5次: 我目前是一个纯文本模型，无法直接处理或测试语音功能。，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=0329751caad94287ad085cbaa619eba4')
+2026-03-11 02:22:34 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 我目前是一个纯文本模型，无法直接处理或测试语音功能。，请检查网络或服务是否正常
+2026-03-11 02:22:34 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错：文件不存在tmp/tts-2026-03-11@6e4d56335acb4f21a2fc7d2e1fb6e623.mp3
+2026-03-11 02:22:34 - 0.4.4_SiBaDoEdnono - core.handle.sendAudioHandle - INFO - core.handle.sendAudioHandle - 发送第一段语音: 我目前是一个纯文本模型，无法直接处理或测试语音功能。
+2026-03-11 02:22:34 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败5次: 不过，如果您想测试语音相关功能，可以尝试以下方法，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=44b907e06cfc415f9997f8c571e63b51')
+2026-03-11 02:22:34 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 不过，如果您想测试语音相关功能，可以尝试以下方法，请检查网络或服务是否正常
+2026-03-11 02:22:34 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错：文件不存在tmp/tts-2026-03-11@4999a8ccc50c4b6b9058f6400f9132c7.mp3
+2026-03-11 02:22:34 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: runAndWait()
+   ```
+需要具体帮助（如调试代码、选择工具）？，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=808a8747f5bd4feca492a5e6ffbcc38a')
+2026-03-11 02:22:35 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 请告诉我您的使用场景，我会尽力提供建议！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=03579f0af7cf4f3bb84b0fd24c9fe295')
+2026-03-11 02:22:35 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败2次: 1. 设备自带工具  
+- 手机/电脑的录音机应用
+- 系统语音识别（如Windows语音识别、Android的Google语音助手）
+2. 在线语音工具  
+- 语音生成：Google Text-to-Speech、Azure TTS  
+- 语音识别：SpeechTexter、Web Speech API演示
+3. 开发测试  
+   如果您是开发者，可用以下库进行测试：
+   ```python
+   # 示例：使用pyttsx3文本转语音（Python）
+   import pyttsx3
+   engine = pyttsx3.init()
+   engine.，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=6d656999612b441dbc60b555d510f4aa')
+2026-03-11 02:22:35 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败2次: say("测试语音播放")
+   engine.，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=ba6b4d19ecf24d84aebc0451f3663902')
+2026-03-11 02:22:36 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败2次: runAndWait()
+   ```
+需要具体帮助（如调试代码、选择工具）？，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=c348ebac6b2a42e59443493ec4d34a5b')
+2026-03-11 02:22:36 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败2次: 请告诉我您的使用场景，我会尽力提供建议！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=f653d81b19804ceb85cc964a2a37cba5')
+2026-03-11 02:22:36 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败3次: 1. 设备自带工具  
+- 手机/电脑的录音机应用
+- 系统语音识别（如Windows语音识别、Android的Google语音助手）
+2. 在线语音工具  
+- 语音生成：Google Text-to-Speech、Azure TTS  
+- 语音识别：SpeechTexter、Web Speech API演示
+3. 开发测试  
+   如果您是开发者，可用以下库进行测试：
+   ```python
+   # 示例：使用pyttsx3文本转语音（Python）
+   import pyttsx3
+   engine = pyttsx3.init()
+   engine.，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=f6b4594d7f7b4ac29d9aaf84d4b6d418')
+2026-03-11 02:22:36 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败3次: say("测试语音播放")
+   engine.，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=99d44d020a33422794cf1ca18a7713b8')
+2026-03-11 02:22:37 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败3次: runAndWait()
+   ```
+需要具体帮助（如调试代码、选择工具）？，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=4fd19fedc05d47fd8d336f330ec8a169')
+2026-03-11 02:22:37 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败3次: 请告诉我您的使用场景，我会尽力提供建议！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=5b614501c8e048feb0ca276f860a2deb')
+2026-03-11 02:22:37 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败4次: 1. 设备自带工具  
+- 手机/电脑的录音机应用
+- 系统语音识别（如Windows语音识别、Android的Google语音助手）
+2. 在线语音工具  
+- 语音生成：Google Text-to-Speech、Azure TTS  
+- 语音识别：SpeechTexter、Web Speech API演示
+3. 开发测试  
+   如果您是开发者，可用以下库进行测试：
+   ```python
+   # 示例：使用pyttsx3文本转语音（Python）
+   import pyttsx3
+   engine = pyttsx3.init()
+   engine.，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=2c8c469e5fc848eab30438374d6f12e4')
+2026-03-11 02:22:37 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败4次: say("测试语音播放")
+   engine.，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=f39c3740f7324bfbb6257646a7fe2038')
+2026-03-11 02:22:38 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败4次: runAndWait()
+   ```
+需要具体帮助（如调试代码、选择工具）？，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=e6bb84794d8945378277d0ce10abd2a3')
+2026-03-11 02:22:39 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败4次: 请告诉我您的使用场景，我会尽力提供建议！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=73e4f4c6c9d04e019dca6361c3903409')
+2026-03-11 02:22:39 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败5次: 1. 设备自带工具  
+- 手机/电脑的录音机应用
+- 系统语音识别（如Windows语音识别、Android的Google语音助手）
+2. 在线语音工具  
+- 语音生成：Google Text-to-Speech、Azure TTS  
+- 语音识别：SpeechTexter、Web Speech API演示
+3. 开发测试  
+   如果您是开发者，可用以下库进行测试：
+   ```python
+   # 示例：使用pyttsx3文本转语音（Python）
+   import pyttsx3
+   engine = pyttsx3.init()
+   engine.，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=f1b9ebe336f042e485357807fae9d0b2')
+2026-03-11 02:22:39 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 1. 设备自带工具  
+- 手机/电脑的录音机应用
+- 系统语音识别（如Windows语音识别、Android的Google语音助手）
+2. 在线语音工具  
+- 语音生成：Google Text-to-Speech、Azure TTS  
+- 语音识别：SpeechTexter、Web Speech API演示
+3. 开发测试  
+   如果您是开发者，可用以下库进行测试：
+   ```python
+   # 示例：使用pyttsx3文本转语音（Python）
+   import pyttsx3
+   engine = pyttsx3.init()
+   engine.，请检查网络或服务是否正常
+2026-03-11 02:22:39 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错：文件不存在tmp/tts-2026-03-11@530d577661ad449cb6bd2a1d784b91dd.mp3
+2026-03-11 02:22:39 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败5次: say("测试语音播放")
+   engine.，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=c47a41b332504a32b5c03c335e01ffc7')
+2026-03-11 02:22:39 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: say("测试语音播放")
+   engine.，请检查网络或服务是否正常
+2026-03-11 02:22:39 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错：文件不存在tmp/tts-2026-03-11@a260de4f52014820ae54d3d3d2561891.mp3
+2026-03-11 02:22:39 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败5次: runAndWait()
+   ```
+需要具体帮助（如调试代码、选择工具）？，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=49d0d5cf1cb94056a81af3a5e6d5ebc3')
+2026-03-11 02:22:39 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: runAndWait()
+   ```
+需要具体帮助（如调试代码、选择工具）？，请检查网络或服务是否正常
+2026-03-11 02:22:39 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错：文件不存在tmp/tts-2026-03-11@9b06399f68004671a3dcae13148710de.mp3
+2026-03-11 02:22:40 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败5次: 请告诉我您的使用场景，我会尽力提供建议！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=c01134f7583c435ab9a05e4e3663a1d7')
+2026-03-11 02:22:40 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 请告诉我您的使用场景，我会尽力提供建议！，请检查网络或服务是否正常
+2026-03-11 02:22:40 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错：文件不存在tmp/tts-2026-03-11@c1ce05e9e2d241f685337d3455078ea7.mp3
+2026-03-11 02:23:26 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到listen消息：{"type":"listen","mode":"manual","state":"start"}
+2026-03-11 02:23:29 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到listen消息：{"type":"listen","mode":"manual","state":"stop"}
+2026-03-11 02:23:29 - 0.4.4_SiBaDoEdnono - core.handle.receiveAudioHandle - INFO - core.handle.receiveAudioHandle - 识别文本: 你是谁？
+2026-03-11 02:23:29 - 0.4.4_SiBaDoEdnono - core.connection - WARNING - core.connection - 记忆内容: 
+2026-03-11 02:23:30 - 0.4.4_SiBaDoEdnono - core.providers.llm.openai.openai - INFO - core.providers.llm.openai.openai - LLm SEND content[{'role': 'system', 'content': ''}, {'role': 'user', 'content': '测试语音。'}, {'role': 'assistant', 'content': '我目前是一个纯文本模型，无法直接处理或测试语音功能。不过，如果您想测试语音相关功能，可以尝试以下方法：\n\n1. **设备自带工具**  \n   - 手机/电脑的录音机应用\n   - 系统语音识别（如Windows语音识别、Android的Google语音助手）\n\n2. **在线语音工具**  \n   - 语音生成：Google Text-to-Speech、Azure TTS  \n   - 语音识别：SpeechTexter、Web Speech API演示\n\n3. **开发测试**  \n   如果您是开发者，可用以下库进行测试：\n   ```python\n   # 示例：使用pyttsx3文本转语音（Python）\n   import pyttsx3\n   engine = pyttsx3.init()\n   engine.say("测试语音播放")\n   engine.runAndWait()\n   ```\n\n需要具体帮助（如调试代码、选择工具）？请告诉我您的使用场景，我会尽力提供建议！ 🎤'}, {'role': 'user', 'content': '你是谁？'}]with conv_id 316c15cb-d5c5-4718-9508-7ed77b8b3700
+2026-03-11 02:23:30 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 大模型说出第一句话: 你好！
+2026-03-11 02:23:31 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 你好！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=826dda77e9fa4a26aa8b18e91129d37e')
+2026-03-11 02:23:32 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 我是DeepSeek，由深度求索公司创造的AI助手！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=7791e88461774a07946b7a9d3ecf6eae')
+2026-03-11 02:23:32 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 让我简单介绍一下自己，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=af36e118aa4443df80f7fa6dbc2cdcd5')
+2026-03-11 02:23:33 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败2次: 你好！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=715371227acc4d489094e317ac61389f')
+2026-03-11 02:23:33 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败2次: 我是DeepSeek，由深度求索公司创造的AI助手！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=9dc614e362644f33ae96a330ca929721')
+2026-03-11 02:23:33 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败2次: 让我简单介绍一下自己，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=ad7f2d6d73cd4916a96274b441e41fff')
+2026-03-11 02:23:34 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败3次: 你好！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=9adf0083d77a4bd8bac92219e65acd5a')
+2026-03-11 02:23:34 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败3次: 我是DeepSeek，由深度求索公司创造的AI助手！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=f4e1a2cf7693414e882698f1575b101a')
+2026-03-11 02:23:35 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败3次: 让我简单介绍一下自己，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=df56056dfe394e3488b1689af322eae2')
+2026-03-11 02:23:35 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败4次: 你好！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=5c0cae103d0c4f34abf03798cbc7416a')
+2026-03-11 02:23:36 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败4次: 我是DeepSeek，由深度求索公司创造的AI助手！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=d8e8b524dd8d48bb80181ec138e81df1')
+2026-03-11 02:23:36 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 我是一个纯文本模型，专注于对话和文本处理
+- 📚 知识截止到2024年7月
+- 💬 支持128K上下文长度，能记住我们的长对话
+- 📁 支持文件上传功能（图像、txt、pdf、ppt、word、excel等）
+- 🔍 支持联网搜索（需要手动开启）
+- 💝 完全免费使用，没有收费计划
+虽然我不支持语音功能，但在文字交流方面我很乐意帮助你！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=ec73d27f3c2747909a07a22b49817aa5')
+2026-03-11 02:23:36 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败4次: 让我简单介绍一下自己，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=338016eefb7f45f084004042bbec370b')
+2026-03-11 02:23:36 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 无论是回答问题、协助工作、学习讨论，还是日常聊天，我都很开心能为你提供帮助。，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=e59dd8d4d0ee482d9b18b82ddbc15bec')
+2026-03-11 02:23:37 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败5次: 你好！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=4abb6c8e670449eabddb33c1dc959cca')
+2026-03-11 02:23:37 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 你好！，请检查网络或服务是否正常
+2026-03-11 02:23:37 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错：文件不存在tmp/tts-2026-03-11@b8047dc8aaa447e3b62e8fa2de1fdcbd.mp3
+2026-03-11 02:23:37 - 0.4.4_SiBaDoEdnono - core.handle.sendAudioHandle - INFO - core.handle.sendAudioHandle - 发送第一段语音: 你好！
+2026-03-11 02:23:37 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 有什么我可以为你做的吗？，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=2869651e9a4f45e993be518d3eb5f242')
+2026-03-11 02:23:37 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败5次: 我是DeepSeek，由深度求索公司创造的AI助手！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=13b3e12e2dcc4e399a013f4882bc33af')
+2026-03-11 02:23:37 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 我是DeepSeek，由深度求索公司创造的AI助手！，请检查网络或服务是否正常
+2026-03-11 02:23:37 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错：文件不存在tmp/tts-2026-03-11@953fc6cdd3b5424fb55f00af87342c68.mp3
+2026-03-11 02:23:37 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败2次: 我是一个纯文本模型，专注于对话和文本处理
+- 📚 知识截止到2024年7月
+- 💬 支持128K上下文长度，能记住我们的长对话
+- 📁 支持文件上传功能（图像、txt、pdf、ppt、word、excel等）
+- 🔍 支持联网搜索（需要手动开启）
+- 💝 完全免费使用，没有收费计划
+虽然我不支持语音功能，但在文字交流方面我很乐意帮助你！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=1c151bc2faa04ebb815ef72fc923bd55')
+2026-03-11 02:23:37 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败5次: 让我简单介绍一下自己，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=9661c0d98968487caa89b93db02a7122')
+2026-03-11 02:23:37 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 让我简单介绍一下自己，请检查网络或服务是否正常
+2026-03-11 02:23:37 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错：文件不存在tmp/tts-2026-03-11@f9f4e3d5a397439ca351da30d2e01b10.mp3
+2026-03-11 02:23:38 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败2次: 无论是回答问题、协助工作、学习讨论，还是日常聊天，我都很开心能为你提供帮助。，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=12749c28faf040b387b6a4fd02aa67e2')
+2026-03-11 02:23:38 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败2次: 有什么我可以为你做的吗？，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=ed9ab9885c4249b7b0ec972ffe11cb1e')
+2026-03-11 02:23:38 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败3次: 我是一个纯文本模型，专注于对话和文本处理
+- 📚 知识截止到2024年7月
+- 💬 支持128K上下文长度，能记住我们的长对话
+- 📁 支持文件上传功能（图像、txt、pdf、ppt、word、excel等）
+- 🔍 支持联网搜索（需要手动开启）
+- 💝 完全免费使用，没有收费计划
+虽然我不支持语音功能，但在文字交流方面我很乐意帮助你！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=eb61b17716d64d32a490488cf7056541')
+2026-03-11 02:23:39 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败3次: 无论是回答问题、协助工作、学习讨论，还是日常聊天，我都很开心能为你提供帮助。，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=f75e17e26fbf4814a6ed7db12ff24be3')
+2026-03-11 02:23:39 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败3次: 有什么我可以为你做的吗？，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=ba60212233844c8296ba278ee433a94c')
+2026-03-11 02:23:40 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败4次: 我是一个纯文本模型，专注于对话和文本处理
+- 📚 知识截止到2024年7月
+- 💬 支持128K上下文长度，能记住我们的长对话
+- 📁 支持文件上传功能（图像、txt、pdf、ppt、word、excel等）
+- 🔍 支持联网搜索（需要手动开启）
+- 💝 完全免费使用，没有收费计划
+虽然我不支持语音功能，但在文字交流方面我很乐意帮助你！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=115581a5246f4a0ebca53a5cefe829d5')
+2026-03-11 02:23:40 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败4次: 无论是回答问题、协助工作、学习讨论，还是日常聊天，我都很开心能为你提供帮助。，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=c3258b8fc9584660a9a6d8784fcfd29c')
+2026-03-11 02:23:40 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败4次: 有什么我可以为你做的吗？，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=9739f37535f047d5b2aa750d13ad5d99')
+2026-03-11 02:23:41 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败5次: 我是一个纯文本模型，专注于对话和文本处理
+- 📚 知识截止到2024年7月
+- 💬 支持128K上下文长度，能记住我们的长对话
+- 📁 支持文件上传功能（图像、txt、pdf、ppt、word、excel等）
+- 🔍 支持联网搜索（需要手动开启）
+- 💝 完全免费使用，没有收费计划
+虽然我不支持语音功能，但在文字交流方面我很乐意帮助你！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=251ff4c8eacb43ef97e94d21bc7c3f98')
+2026-03-11 02:23:41 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 我是一个纯文本模型，专注于对话和文本处理
+- 📚 知识截止到2024年7月
+- 💬 支持128K上下文长度，能记住我们的长对话
+- 📁 支持文件上传功能（图像、txt、pdf、ppt、word、excel等）
+- 🔍 支持联网搜索（需要手动开启）
+- 💝 完全免费使用，没有收费计划
+虽然我不支持语音功能，但在文字交流方面我很乐意帮助你！，请检查网络或服务是否正常
+2026-03-11 02:23:41 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错：文件不存在tmp/tts-2026-03-11@34cd961016524780aaff0d43d053df1d.mp3
+2026-03-11 02:23:42 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败5次: 无论是回答问题、协助工作、学习讨论，还是日常聊天，我都很开心能为你提供帮助。，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=c92f2823b6824195ba648155741306c9')
+2026-03-11 02:23:42 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 无论是回答问题、协助工作、学习讨论，还是日常聊天，我都很开心能为你提供帮助。，请检查网络或服务是否正常
+2026-03-11 02:23:42 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错：文件不存在tmp/tts-2026-03-11@d84ae74a0bf547ca88b8f2adfc8b86c2.mp3
+2026-03-11 02:23:42 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败5次: 有什么我可以为你做的吗？，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=212858715E593C99CF1A36F85E48BFD02AE0755363F426BF8955A51A0A11E3AD&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=2a525eef17b742dc9f00f63f67fb6aff')
+2026-03-11 02:23:42 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 有什么我可以为你做的吗？，请检查网络或服务是否正常
+2026-03-11 02:23:42 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错：文件不存在tmp/tts-2026-03-11@f6f891d4a873472cb53e4ec3015938ae.mp3
+2026-03-11 02:25:13 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 连接资源已释放
+2026-03-11 02:25:18 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: tts成功 EdgeTTS
+2026-03-11 02:25:18 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: llm成功 DoubaoLLM
+2026-03-11 02:25:18 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: intent成功 nointent
+2026-03-11 02:25:18 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 尝试加载记忆插件 `nomem`，路径=core/providers/memory/nomem/nomem.py
+2026-03-11 02:25:18 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 模块 import 成功: core.providers.memory.nomem.nomem
+2026-03-11 02:25:18 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 实例化 MemoryProvider 成功: nomem
+2026-03-11 02:25:18 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: memory成功 nomem
+2026-03-11 02:25:19 - 0.4.4_SiBaDoEdnono - core.providers.vad.silero - INFO - core.providers.vad.silero - SileroVAD
+2026-03-11 02:25:19 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: vad成功 SileroVAD
+2026-03-11 02:25:19 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: asr成功 BaiduASR
+2026-03-11 02:25:19 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - OTA接口是		http://192.168.0.2:8002/xiaozhi/ota/
+2026-03-11 02:25:19 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - Websocket地址是	ws://192.168.0.2:8000/xiaozhi/v1/
+2026-03-11 02:25:19 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - =======上面的地址是websocket协议地址，请勿用浏览器访问=======
+2026-03-11 02:25:19 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - 如想测试websocket请用谷歌浏览器打开test目录下的test_page.html
+2026-03-11 02:25:19 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - =============================================================
+
+2026-03-11 02:25:23 - 0.4.4_SiBaDoEdnono - core.ota_server - INFO - core.ota_server - OTA请求设备ID: b8:f8:62:f6:be:f4
+2026-03-11 02:25:25 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 127.0.0.1 conn - Headers: {'upgrade': 'websocket', 'connection': 'upgrade', 'host': 'lee.seangaming.site', 'x-real-ip': '186.22.56.72', 'x-forwarded-for': '186.22.56.72', 'x-forwarded-proto': 'https', 'pragma': 'no-cache', 'cache-control': 'no-cache', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36', 'origin': 'https://lee.seangaming.site', 'sec-websocket-version': '13', 'accept-encoding': 'gzip, deflate, br, zstd', 'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8', 'sec-websocket-key': 'DUJM3h3MYYP8gRIdjVbRPA==', 'sec-websocket-extensions': 'permessage-deflate; client_max_window_bits', 'device-id': 'b8:f8:62:f6:be:f4', 'client-id': 'web_test_client'}
+2026-03-11 02:25:25 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 初始化组件: prompt成功 ...
+2026-03-11 02:25:25 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到hello消息：{"type":"hello","device_id":"b8:f8:62:f6:be:f4","device_name":"Web测试设备","device_mac":"b8:f8:62:f6:be:f4","token":"your-token1"}
+2026-03-11 02:25:26 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到listen消息：{"type":"listen","mode":"manual","state":"start"}
+2026-03-11 02:25:28 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到listen消息：{"type":"listen","mode":"manual","state":"stop"}
+2026-03-11 02:25:29 - 0.4.4_SiBaDoEdnono - core.handle.receiveAudioHandle - INFO - core.handle.receiveAudioHandle - 识别文本: 测试语音。
+2026-03-11 02:25:29 - 0.4.4_SiBaDoEdnono - core.connection - WARNING - core.connection - 记忆内容: 
+2026-03-11 02:25:29 - 0.4.4_SiBaDoEdnono - core.providers.llm.openai.openai - INFO - core.providers.llm.openai.openai - LLm SEND content[{'role': 'system', 'content': ''}, {'role': 'user', 'content': '测试语音。'}]with conv_id 90bf78ac-9a88-435d-b3ea-2af33bd7dfda
+2026-03-11 02:25:30 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 大模型说出第一句话: 我目前是一个纯文本模型，无法直接生成或播放语音。
+2026-03-11 02:25:31 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 我目前是一个纯文本模型，无法直接生成或播放语音。，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=018A7A439422E5C6A8D5491AD86EFDC7FC418B50B00AB428BFEA5EEFD018CF0C&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=6cadf1496ba94f43ab345bf2c4a1113f')
+2026-03-11 02:25:31 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 检测到TTS鉴权/地区限制(403)，停止重试
+2026-03-11 02:25:31 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 我目前是一个纯文本模型，无法直接生成或播放语音。，请检查网络或服务是否正常
+2026-03-11 02:25:31 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - tts转换失败，我目前是一个纯文本模型，无法直接生成或播放语音。
+2026-03-11 02:25:31 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错： file is empty: 1: 我目前是一个纯文本模型，无法直接生成或播放语音。
+2026-03-11 02:25:31 - 0.4.4_SiBaDoEdnono - core.handle.sendAudioHandle - INFO - core.handle.sendAudioHandle - 发送第一段语音: 我目前是一个纯文本模型，无法直接生成或播放语音。
+2026-03-11 02:25:32 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 但如果你需要测试语音功能，可以考虑以下方法，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=018A7A439422E5C6A8D5491AD86EFDC7FC418B50B00AB428BFEA5EEFD018CF0C&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=a879022ded1a4ac18c46b4ccc2127c8b')
+2026-03-11 02:25:32 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 检测到TTS鉴权/地区限制(403)，停止重试
+2026-03-11 02:25:32 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 但如果你需要测试语音功能，可以考虑以下方法，请检查网络或服务是否正常
+2026-03-11 02:25:32 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - tts转换失败，但如果你需要测试语音功能，可以考虑以下方法
+2026-03-11 02:25:32 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错： file is empty: 2: 但如果你需要测试语音功能，可以考虑以下方法
+2026-03-11 02:25:33 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 1. 设备自带的语音助手  
+   例如唤醒手机的 Siri（苹果）、Google Assistant（安卓）或小爱同学（小米），直接说“测试语音”即可检查麦克风和播放是否正常。，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=018A7A439422E5C6A8D5491AD86EFDC7FC418B50B00AB428BFEA5EEFD018CF0C&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=7cc366f7665d48f3bfe475c39566607d')
+2026-03-11 02:25:33 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 检测到TTS鉴权/地区限制(403)，停止重试
+2026-03-11 02:25:33 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 1. 设备自带的语音助手  
+   例如唤醒手机的 Siri（苹果）、Google Assistant（安卓）或小爱同学（小米），直接说“测试语音”即可检查麦克风和播放是否正常。，请检查网络或服务是否正常
+2026-03-11 02:25:33 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - tts转换失败，1. **设备自带的语音助手**  
+   例如唤醒手机的 Siri（苹果）、Google Assistant（安卓）或小爱同学（小米），直接说“测试语音”即可检查麦克风和播放是否正常。
+2026-03-11 02:25:33 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错： file is empty: 3: 1. **设备自带的语音助手**  
+   例如唤醒手机的 Siri（苹果）、Google Assistant（安卓）或小爱同学（小米），直接说“测试语音”即可检查麦克风和播放是否正常。
+2026-03-11 02:25:35 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 2. 在线语音生成工具  
+   如果你需要生成语音，可以尝试：  
+- 文本转语音工具：如 Google Text-to-Speech、Azure TTS，或国内的百度语音合成等。，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=018A7A439422E5C6A8D5491AD86EFDC7FC418B50B00AB428BFEA5EEFD018CF0C&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=cb59e1c022af4e20828f54083f93d5c6')
+2026-03-11 02:25:35 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 检测到TTS鉴权/地区限制(403)，停止重试
+2026-03-11 02:25:35 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 2. 在线语音生成工具  
+   如果你需要生成语音，可以尝试：  
+- 文本转语音工具：如 Google Text-to-Speech、Azure TTS，或国内的百度语音合成等。，请检查网络或服务是否正常
+2026-03-11 02:25:35 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - tts转换失败，2. **在线语音生成工具**  
+   如果你需要生成语音，可以尝试：  
+   - **文本转语音工具**：如 Google Text-to-Speech、Azure TTS，或国内的百度语音合成等。
+2026-03-11 02:25:35 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错： file is empty: 4: 2. **在线语音生成工具**  
+   如果你需要生成语音，可以尝试：  
+   - **文本转语音工具**：如 Google Text-to-Speech、Azure TTS，或国内的百度语音合成等。
+2026-03-11 02:25:35 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 播放测试音频，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=018A7A439422E5C6A8D5491AD86EFDC7FC418B50B00AB428BFEA5EEFD018CF0C&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=cf8534257b6c4eff8dff981a712ad7fa')
+2026-03-11 02:25:35 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 检测到TTS鉴权/地区限制(403)，停止重试
+2026-03-11 02:25:35 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 播放测试音频，请检查网络或服务是否正常
+2026-03-11 02:25:35 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - tts转换失败，**播放测试音频**
+2026-03-11 02:25:35 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错： file is empty: 5: **播放测试音频**
+2026-03-11 02:25:35 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 在 YouTube 搜索“语音测试音频”，检查设备扬声器。，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=018A7A439422E5C6A8D5491AD86EFDC7FC418B50B00AB428BFEA5EEFD018CF0C&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=2adcd95d4fd045a99ded9d09f7ca337e')
+2026-03-11 02:25:35 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 检测到TTS鉴权/地区限制(403)，停止重试
+2026-03-11 02:25:35 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 在 YouTube 搜索“语音测试音频”，检查设备扬声器。，请检查网络或服务是否正常
+2026-03-11 02:25:35 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - tts转换失败，在 YouTube 搜索“语音测试音频”，检查设备扬声器。
+2026-03-11 02:25:35 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错： file is empty: 6: 在 YouTube 搜索“语音测试音频”，检查设备扬声器。
+2026-03-11 02:25:37 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 3. 语音相关开发测试  
+   如果你在开发语音功能：  
+- 用麦克风录制短音频，通过播放验证硬件是否正常。，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=018A7A439422E5C6A8D5491AD86EFDC7FC418B50B00AB428BFEA5EEFD018CF0C&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=aadd0389b36740fba40115a74ce3ecd8')
+2026-03-11 02:25:37 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 检测到TTS鉴权/地区限制(403)，停止重试
+2026-03-11 02:25:37 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 3. 语音相关开发测试  
+   如果你在开发语音功能：  
+- 用麦克风录制短音频，通过播放验证硬件是否正常。，请检查网络或服务是否正常
+2026-03-11 02:25:37 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - tts转换失败，3. **语音相关开发测试**  
+   如果你在开发语音功能：  
+   - 用麦克风录制短音频，通过播放验证硬件是否正常。
+2026-03-11 02:25:37 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错： file is empty: 7: 3. **语音相关开发测试**  
+   如果你在开发语音功能：  
+   - 用麦克风录制短音频，通过播放验证硬件是否正常。
+2026-03-11 02:25:38 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 使用 `ffmpeg`、`pyaudio` 等工具进行音频流调试。，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=018A7A439422E5C6A8D5491AD86EFDC7FC418B50B00AB428BFEA5EEFD018CF0C&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=b21dc7b9f4e441b28366a2e2598349f9')
+2026-03-11 02:25:38 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 检测到TTS鉴权/地区限制(403)，停止重试
+2026-03-11 02:25:38 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 使用 `ffmpeg`、`pyaudio` 等工具进行音频流调试。，请检查网络或服务是否正常
+2026-03-11 02:25:38 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - tts转换失败，使用 `ffmpeg`、`pyaudio` 等工具进行音频流调试。
+2026-03-11 02:25:38 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错： file is empty: 8: 使用 `ffmpeg`、`pyaudio` 等工具进行音频流调试。
+2026-03-11 02:25:38 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 需要更具体的帮助吗？，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=018A7A439422E5C6A8D5491AD86EFDC7FC418B50B00AB428BFEA5EEFD018CF0C&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=15ee7eb9eb4745f2bac5e335bda4f72b')
+2026-03-11 02:25:38 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 检测到TTS鉴权/地区限制(403)，停止重试
+2026-03-11 02:25:38 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 需要更具体的帮助吗？，请检查网络或服务是否正常
+2026-03-11 02:25:38 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - tts转换失败，需要更具体的帮助吗？
+2026-03-11 02:25:38 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错： file is empty: 9: 需要更具体的帮助吗？
+2026-03-11 02:25:38 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 可以告诉我你的使用场景，我会尽力提供建议！，错误: Edge TTS请求失败: 403, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&Sec-MS-GEC=018A7A439422E5C6A8D5491AD86EFDC7FC418B50B00AB428BFEA5EEFD018CF0C&Sec-MS-GEC-Version=1-130.0.2849.68&ConnectionId=a496ff0dd7b34e64b09b7df310469a1d')
+2026-03-11 02:25:38 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 检测到TTS鉴权/地区限制(403)，停止重试
+2026-03-11 02:25:38 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - ERROR - core.providers.tts.base - 语音生成失败: 可以告诉我你的使用场景，我会尽力提供建议！，请检查网络或服务是否正常
+2026-03-11 02:25:38 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - tts转换失败，可以告诉我你的使用场景，我会尽力提供建议！
+2026-03-11 02:25:38 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - TTS出错： file is empty: 10: 可以告诉我你的使用场景，我会尽力提供建议！
+2026-03-11 02:27:08 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 连接资源已释放
+2026-03-11 02:27:58 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: tts成功 EdgeTTS
+2026-03-11 02:27:59 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: llm成功 DoubaoLLM
+2026-03-11 02:27:59 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: intent成功 nointent
+2026-03-11 02:27:59 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 尝试加载记忆插件 `nomem`，路径=core/providers/memory/nomem/nomem.py
+2026-03-11 02:27:59 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 模块 import 成功: core.providers.memory.nomem.nomem
+2026-03-11 02:27:59 - 0.4.4_SiBaDoEdnono - core.utils.memory - INFO - core.utils.memory - [MemoryLoader] 实例化 MemoryProvider 成功: nomem
+2026-03-11 02:27:59 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: memory成功 nomem
+2026-03-11 02:28:00 - 0.4.4_SiBaDoEdnono - core.providers.vad.silero - INFO - core.providers.vad.silero - SileroVAD
+2026-03-11 02:28:00 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: vad成功 SileroVAD
+2026-03-11 02:28:00 - 0.4.4_SiBaDoEdnono - core.utils.util - INFO - core.utils.util - 初始化组件: asr成功 BaiduASR
+2026-03-11 02:28:00 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - OTA接口是		http://192.168.0.2:8002/xiaozhi/ota/
+2026-03-11 02:28:00 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - Websocket地址是	ws://192.168.0.2:8000/xiaozhi/v1/
+2026-03-11 02:28:00 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - =======上面的地址是websocket协议地址，请勿用浏览器访问=======
+2026-03-11 02:28:00 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - 如想测试websocket请用谷歌浏览器打开test目录下的test_page.html
+2026-03-11 02:28:00 - 0.4.4_SiBaDoEdnono - __main__ - INFO - __main__ - =============================================================
+
+2026-03-11 02:28:05 - 0.4.4_SiBaDoEdnono - core.ota_server - INFO - core.ota_server - OTA请求设备ID: b8:f8:62:f6:be:f4
+2026-03-11 02:28:06 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 127.0.0.1 conn - Headers: {'upgrade': 'websocket', 'connection': 'upgrade', 'host': 'lee.seangaming.site', 'x-real-ip': '186.22.56.72', 'x-forwarded-for': '186.22.56.72', 'x-forwarded-proto': 'https', 'pragma': 'no-cache', 'cache-control': 'no-cache', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36', 'origin': 'https://lee.seangaming.site', 'sec-websocket-version': '13', 'accept-encoding': 'gzip, deflate, br, zstd', 'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8', 'sec-websocket-key': 'pVYU1jhiBnyfNlxfAYIp7g==', 'sec-websocket-extensions': 'permessage-deflate; client_max_window_bits', 'device-id': 'b8:f8:62:f6:be:f4', 'client-id': 'web_test_client'}
+2026-03-11 02:28:06 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 初始化组件: prompt成功 ...
+2026-03-11 02:28:07 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到hello消息：{"type":"hello","device_id":"b8:f8:62:f6:be:f4","device_name":"Web测试设备","device_mac":"b8:f8:62:f6:be:f4","token":"your-token1"}
+2026-03-11 02:28:09 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到listen消息：{"type":"listen","mode":"manual","state":"start"}
+2026-03-11 02:28:14 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到listen消息：{"type":"listen","mode":"manual","state":"stop"}
+2026-03-11 02:28:14 - 0.4.4_SiBaDoEdnono - core.handle.receiveAudioHandle - INFO - core.handle.receiveAudioHandle - 识别文本: 简单十秒钟自我介绍。
+2026-03-11 02:28:14 - 0.4.4_SiBaDoEdnono - core.connection - WARNING - core.connection - 记忆内容: 
+2026-03-11 02:28:15 - 0.4.4_SiBaDoEdnono - core.providers.llm.openai.openai - INFO - core.providers.llm.openai.openai - LLm SEND content[{'role': 'system', 'content': ''}, {'role': 'user', 'content': '简单十秒钟自我介绍。'}]with conv_id 4692eca4-255a-4438-961b-1c57d10ba018
+2026-03-11 02:28:15 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 大模型说出第一句话: 当然！
+2026-03-11 02:28:16 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 当然！:tmp/tts-2026-03-11@bd34a284618a4eca971a8ea319682828.mp3，重试0次
+2026-03-11 02:28:17 - 0.4.4_SiBaDoEdnono - core.handle.sendAudioHandle - INFO - core.handle.sendAudioHandle - 发送第一段语音: 当然！
+2026-03-11 02:28:17 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 这里有几个不同风格的10秒自我介绍，你可以根据场合选择:tmp/tts-2026-03-11@7cdf77ceb7cb4a1697ddeea43820d008.mp3，重试0次
+2026-03-11 02:28:18 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 1. 通用简洁版
+（适合大多数场合）
+大家好，我是[你的名字]。:tmp/tts-2026-03-11@411c29f6df2149c7833b1e6f4ad5bdc1.mp3，重试0次
+2026-03-11 02:28:18 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 很高兴认识大家，希望能和大家相处愉快！:tmp/tts-2026-03-11@eaa1d535d0904279bf6f553cfd96bbea.mp3，重试0次
+2026-03-11 02:28:20 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 2. 略有信息版
+（适合小型社交或破冰）
+大家好，我是[你的名字]，一名[你的身份，如：学生/设计师]。:tmp/tts-2026-03-11@4878af537e8440e585cc8e8dc9ec6991.mp3，重试0次
+2026-03-11 02:28:20 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 我的爱好是[你的爱好，如:tmp/tts-2026-03-11@492004f9a5df494c8f5a125a5c3d2902.mp3，重试0次
+2026-03-11 02:28:20 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 阅读和运动]。:tmp/tts-2026-03-11@ded107e9b60542dfab6204bd5f1fb75b.mp3，重试0次
+2026-03-11 02:28:20 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 请多关照！:tmp/tts-2026-03-11@d25fe2f520ec40999ea167691dba36bc.mp3，重试0次
+2026-03-11 02:28:22 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 使用技巧:tmp/tts-2026-03-11@ef675a4391044477a8243fec5086b8f4.mp3，重试0次
+2026-03-11 02:28:22 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: - 说清名字:tmp/tts-2026-03-11@6cc5342ea47e41f4aaa0b3203ec1b9ab.mp3，重试0次
+2026-03-11 02:28:22 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 3. 活泼亲切版
+（适合轻松、年轻的氛围）
+嗨，我是[你的名字]！一个乐观的[你的身份]，喜欢探索新鲜事物。:tmp/tts-2026-03-11@c86e80fd30d34bb9bc6307a0bba1a9aa.mp3，重试0次
+2026-03-11 02:28:23 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 吐字清晰，可以说“大家可以叫我[昵称]”。:tmp/tts-2026-03-11@3577cad411584fea90eb5f287ce68ff6.mp3，重试0次
+2026-03-11 02:28:23 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: - 保持微笑:tmp/tts-2026-03-11@15fbff7ed4404ab19b9432fd6488c2cf.mp3，重试0次
+2026-03-11 02:28:23 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 展现你的友善和自信。:tmp/tts-2026-03-11@9a58fd4b41614040b5c3e77f6e0f8cce.mp3，重试0次
+2026-03-11 02:28:23 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: - 眼神交流:tmp/tts-2026-03-11@8003c0c0fbf54ba8b1323eb052de1e33.mp3，重试0次
+2026-03-11 02:28:23 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - WARNING - core.providers.tts.base - 语音生成失败1次: 期待和大家成为朋友！，错误: Edge TTS请求失败: 503, message='Invalid response status', url=URL('wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=ce0d6e82aae34c479155be16108c5b44&Sec-MS-GEC=018A7A439422E5C6A8D5491AD86EFDC7FC418B50B00AB428BFEA5EEFD018CF0C&Sec-MS-GEC-Version=1-143.0.3650.75')
+2026-03-11 02:28:24 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 目光扫过听众。:tmp/tts-2026-03-11@fc837771509a49b98a2f42de75685e92.mp3，重试0次
+2026-03-11 02:28:24 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 选择一个你觉得最舒服的开始吧！:tmp/tts-2026-03-11@cc27d77bbeee4d34a232a3ea3c79afd2.mp3，重试0次
+2026-03-11 02:28:25 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 期待和大家成为朋友！:tmp/tts-2026-03-11@76b555d02aad40ada133bb410064d2f7.mp3，重试1次
+2026-03-11 02:28:27 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 连接资源已释放
+2026-03-11 02:28:27 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - audio_play_priority priority_thread: **1. 通用简洁版**
+（适合大多数场合）
+> 大家好，我是[你的名字]。 received 1005 (no status received [internal]); then sent 1005 (no status received [internal])
+2026-03-11 02:32:51 - 0.4.4_SiBaDoEdnono - core.ota_server - INFO - core.ota_server - OTA请求设备ID: dc:b4:d9:24:30:20
+2026-03-11 02:32:52 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 223.104.80.88 conn - Headers: {'host': 'lee.seangaming.site', 'authorization': 'Bearer', 'client-id': '22ec0dfb-5543-49b3-b723-1ce1967835c7', 'connection': 'Upgrade', 'device-id': 'dc:b4:d9:24:30:20', 'protocol-version': '1', 'sec-websocket-key': 'Lc9GKQS0eNhop/8/K/H82Q==', 'sec-websocket-version': '13', 'upgrade': 'websocket'}
+2026-03-11 02:32:52 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 初始化组件: prompt成功 ...
+2026-03-11 02:32:52 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到hello消息：{"type":"hello","version": 1,"transport":"websocket","audio_params":{"format":"opus", "sample_rate":16000, "channels":1, "frame_duration":60}}
+2026-03-11 02:32:52 - 0.4.4_SiBaDoEdnono - core.handle.helloHandle - INFO - core.handle.helloHandle - 客户端音频格式: opus
+2026-03-11 02:32:52 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到iot消息：{"session_id":"","type":"iot","update":true,"descriptors":[{"name":"Speaker","description":"扬声器","properties":{"volume":{"description":"当前音量值","type":"number"}},"methods":{"SetVolume":{"description":"设置音量","parameters":{"volume":{"description":"0到100之间的整数","type":"number"}}}}}]}
+2026-03-11 02:32:52 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到iot消息：{"session_id":"","type":"iot","update":true,"descriptors":[{"name":"Screen","description":"这是一个屏幕，可设置主题和亮度","properties":{"theme":{"description":"主题","type":"string"},"brightness":{"description":"当前亮度百分比","type":"number"}},"methods":{"SetTheme":{"description":"设置屏幕主题","parameters":{"theme_name":{"description":"主题模式, light 或 dark","type":"string"}}},"SetBrightness":{"description":"设置亮度","parameters":{"brightness":{"description":"0到100之间的整数","type":"number"}}}}}]}
+2026-03-11 02:32:52 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到iot消息：{"session_id":"","type":"iot","update":true,"descriptors":[{"name":"Battery","description":"电池管理","properties":{"level":{"description":"当前电量百分比","type":"number"},"charging":{"description":"是否充电中","type":"boolean"}},"methods":{}}]}
+2026-03-11 02:33:21 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到iot消息：{"session_id":"","type":"iot","update":true,"states":[{"name":"Speaker","state":{"volume":20}},{"name":"Screen","state":{"theme":"light","brightness":75}},{"name":"Battery","state":{"level":78,"charging":false}}]}
+2026-03-11 02:33:21 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到listen消息：{"session_id":"","type":"listen","state":"start","mode":"manual"}
+2026-03-11 02:33:26 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到listen消息：{"session_id":"","type":"listen","state":"stop"}
+2026-03-11 02:33:26 - 0.4.4_SiBaDoEdnono - core.handle.receiveAudioHandle - INFO - core.handle.receiveAudioHandle - 识别文本: 卡波卡波，我得了一种怪病。
+2026-03-11 02:33:26 - 0.4.4_SiBaDoEdnono - core.connection - WARNING - core.connection - 记忆内容: 
+2026-03-11 02:33:27 - 0.4.4_SiBaDoEdnono - core.providers.llm.openai.openai - INFO - core.providers.llm.openai.openai - LLm SEND content[{'role': 'system', 'content': ''}, {'role': 'user', 'content': '卡波卡波，我得了一种怪病。'}]with conv_id 243b4ca5-ee3b-46f8-8aff-432fa9682d69
+2026-03-11 02:33:28 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 大模型说出第一句话: 卡波卡波”这个说法听起来很有趣，可能是一种可爱的表达方式，但身体不舒服是件需要认真对待的事情。
+2026-03-11 02:33:29 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 卡波卡波”这个说法听起来很有趣，可能是一种可爱的表达方式，但身体不舒服是件需要认真对待的事情。:tmp/tts-2026-03-11@4daab50810c74b3289d2b9b06e004ff5.mp3，重试0次
+2026-03-11 02:33:30 - 0.4.4_SiBaDoEdnono - core.handle.sendAudioHandle - INFO - core.handle.sendAudioHandle - 发送第一段语音: 卡波卡波”这个说法听起来很有趣，可能是一种可爱的表达方式，但身体不舒服是件需要认真对待的事情。
+2026-03-11 02:33:30 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 如果你愿意的话，可以和我简单描述一下:tmp/tts-2026-03-11@b9811ae1076a47c1aec34bd71219e1ca.mp3，重试0次
+2026-03-11 02:33:30 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 是什么样不舒服的感觉？:tmp/tts-2026-03-11@dc80dc29098a40b0b353c551eb176059.mp3，重试0次
+2026-03-11 02:33:30 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 持续多久了？:tmp/tts-2026-03-11@5fbab4b3ebd0440b84e7aa23aa3d5a9e.mp3，重试0次
+2026-03-11 02:33:31 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 有没有看过医生或尝试过什么方法？:tmp/tts-2026-03-11@dea4f72e5e8748cba01627e7db4fc233.mp3，重试0次
+2026-03-11 02:33:31 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 不过请一定记住，我无法替代专业医生的诊断。:tmp/tts-2026-03-11@48d69f23ad24429888f9f4f242c89154.mp3，重试0次
+2026-03-11 02:33:32 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 如果症状让你困扰或持续加重，最安全的方式还是尽快咨询医疗人员哦！:tmp/tts-2026-03-11@d8cc20fa8d394c0e926764476fb6bdc4.mp3，重试0次
+2026-03-11 02:33:32 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 希望你早日康复～:tmp/tts-2026-03-11@cfa6b712141d4348a5fd01a0a35de2da.mp3，重试0次
+2026-03-11 02:33:52 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到abort消息：{"session_id":"","type":"abort"}
+2026-03-11 02:33:52 - 0.4.4_SiBaDoEdnono - core.handle.abortHandle - INFO - core.handle.abortHandle - Abort message received
+2026-03-11 02:33:52 - 0.4.4_SiBaDoEdnono - core.handle.abortHandle - INFO - core.handle.abortHandle - Abort message received-end
+2026-03-11 02:33:52 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到iot消息：{"session_id":"","type":"iot","update":true,"states":[{"name":"Battery","state":{"level":77,"charging":false}}]}
+2026-03-11 02:33:52 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到listen消息：{"session_id":"","type":"listen","state":"start","mode":"manual"}
+2026-03-11 02:33:57 - 0.4.4_SiBaDoEdnono - core.handle.textHandle - INFO - core.handle.textHandle - 收到listen消息：{"session_id":"","type":"listen","state":"stop"}
+2026-03-11 02:33:58 - 0.4.4_SiBaDoEdnono - core.handle.receiveAudioHandle - INFO - core.handle.receiveAudioHandle - 识别文本: 我建议你找张仲谋去做一下诊断。
+2026-03-11 02:33:58 - 0.4.4_SiBaDoEdnono - core.connection - WARNING - core.connection - 记忆内容: 
+2026-03-11 02:33:59 - 0.4.4_SiBaDoEdnono - core.providers.llm.openai.openai - INFO - core.providers.llm.openai.openai - LLm SEND content[{'role': 'system', 'content': ''}, {'role': 'user', 'content': '卡波卡波，我得了一种怪病。'}, {'role': 'assistant', 'content': '“卡波卡波”这个说法听起来很有趣，可能是一种可爱的表达方式，但身体不舒服是件需要认真对待的事情。  \n如果你愿意的话，可以和我简单描述一下：  \n- 是什么样不舒服的感觉？  \n- 持续多久了？  \n- 有没有看过医生或尝试过什么方法？  \n\n不过请一定记住，我无法替代专业医生的诊断。如果症状让你困扰或持续加重，最安全的方式还是尽快咨询医疗人员哦！希望你早日康复～ 🌟'}, {'role': 'user', 'content': '我建议你找张仲谋去做一下诊断。'}]with conv_id b68078db-6782-4c3c-b759-3e3f6c9b335a
+2026-03-11 02:33:59 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 大模型说出第一句话: 你的建议听起来很具体，不过“张仲谋”这个名字可能有一些不同的指向性。
+2026-03-11 02:34:01 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 你的建议听起来很具体，不过“张仲谋”这个名字可能有一些不同的指向性。:tmp/tts-2026-03-11@2a2ab7044ab04110ab44589525317114.mp3，重试0次
+2026-03-11 02:34:01 - 0.4.4_SiBaDoEdnono - core.handle.sendAudioHandle - INFO - core.handle.sendAudioHandle - 发送第一段语音: 你的建议听起来很具体，不过“张仲谋”这个名字可能有一些不同的指向性。
+2026-03-11 02:34:01 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 为了能更准确地帮到你，我想确认一下:tmp/tts-2026-03-11@8d404595dbdb49028e70a9f552da0f89.mp3，重试0次
+2026-03-11 02:34:02 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 1. 是否指某位特定的医生或专家？ 如果是的话，可能需要全名、所在医院或专业领域等信息，以便进一步核实。:tmp/tts-2026-03-11@61d6374e2a4d4920a35105a3af43bd7d.mp3，重试0次
+2026-03-11 02:34:04 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 2. 或者这是一个谐音/代称？ 比如是否指向历史人物（如张仲景）或其他特定对象？
+如果是需要医疗帮助，我始终建议通过正规渠道（如医院官方平台、卫健委认证的机构）寻找专业医生。:tmp/tts-2026-03-11@ae5229983e92459bbf0e1e7a6cbe7cfb.mp3，重试0次
+2026-03-11 02:34:04 - 0.4.4_SiBaDoEdnono - core.providers.tts.base - INFO - core.providers.tts.base - 语音生成成功: 如果需要我帮忙梳理就医流程或症状描述，我也很乐意协助哦！:tmp/tts-2026-03-11@44c28f160d224082ae775e5c30524579.mp3，重试0次
+2026-03-11 02:34:42 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 客户端断开连接
+2026-03-11 02:34:42 - 0.4.4_SiBaDoEdnono - core.connection - INFO - core.connection - 连接资源已释放
+2026-03-11 02:34:42 - 0.4.4_SiBaDoEdnono - core.connection - ERROR - core.connection - audio_play_priority priority_thread: 2. **或者这是一个谐音/代称？** 比如是否指向历史人物（如张仲景）或其他特定对象？
+
+如果是需要医疗帮助，我始终建议通过正规渠道（如医院官方平台、卫健委认证的机构）寻找专业医生。 sent 1011 (internal error) keepalive ping timeout; no close frame received

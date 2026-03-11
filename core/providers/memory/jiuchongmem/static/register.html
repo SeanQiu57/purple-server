@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>注册账号</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 2rem;
+            max-width: 360px;
+            margin: auto;
+        }
+
+        input,
+        button {
+            width: 100%;
+            box-sizing: border-box;
+            margin: .5rem 0;
+            padding: .5rem;
+        }
+
+        button {
+            background: #2ecc71;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #msg {
+            color: red;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>🆕 注册九重Memory账号</h2>
+    <form id="reg-form">
+        <input id="username" placeholder="用户名" required>
+        <input id="password" type="password" placeholder="密码" required>
+        <input id="user_id" placeholder="设备ID（MAC 或 UUID）" required>
+        <button>注册</button>
+    </form>
+    <p id="msg"></p>
+
+    <script>
+        document.getElementById('reg-form').addEventListener('submit', async e => {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const user_id = document.getElementById('user_id').value.trim();
+            const msg = document.getElementById('msg');
+            msg.textContent = '';
+
+            try {
+                const r = await fetch('/prompt/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password, user_id })
+                });
+                const t = await r.text();
+                if (!r.ok) throw new Error(t);
+                alert('✅ 注册成功，请返回登录页面');
+                location.href = 'login.html';
+            } catch (e) {
+                msg.textContent = e.toString();
+            }
+        });
+    </script>
+</body>
+
+</html>
