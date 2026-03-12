@@ -35,6 +35,7 @@ from config.config_loader import get_private_config_from_api
 from config.manage_api_client import DeviceNotFoundException, DeviceBindException
 from core.utils.output_counter import add_device_output
 from core.handle.reportHandle import enqueue_tts_report, report
+from core.utils import memory as memory_utils
 
 TAG = __name__
 
@@ -453,6 +454,32 @@ class ConnectionHandler:
 
     def _initialize_memory(self):
         """初始化记忆模块"""
+        if self.memory is None:
+            select_memory_module = self.config["selected_module"].get("Memory")
+            if select_memory_module and self.config.get("Memory", {}).get(select_memory_module):
+                memory_type = (
+                    select_memory_module
+                    if "type" not in self.config["Memory"][select_memory_module]
+                    else self.config["Memory"][select_memory_module]["type"]
+                )
+                if memory_type == "jiuchongmem":
+                    memory_config = dict(self.config["Memory"][select_memory_module])
+                    selected_llm = self.config["selected_module"].get("LLM")
+                    if selected_llm and self.config.get("LLM", {}).get(selected_llm):
+                        memory_config["_selected_llm_name"] = selected_llm
+                        memory_config["_selected_llm_config"] = self.config["LLM"][selected_llm]
+                    self.memory = memory_utils.create_instance(
+                        memory_type,
+                        memory_config,
+                        self.config.get("summaryMemory", None),
+                    )
+                    self.logger.bind(tag=TAG).info(
+                        f"记忆模块采用连接级实例化: {select_memory_module}"
+                    )
+
+        if self.memory is None:
+            return
+
         self.memory.init_memory(
             role_id=self.device_id,
             llm=self.llm,
@@ -530,10 +557,10 @@ class ConnectionHandler:
                 )
                 memory_str = future.result(timeout=5)
 
-            self.logger.bind(tag=TAG).warning(f"记忆内容: {memory_str}")
+            # self.logger.bind(tag=TAG).warning(f"记忆内容: {memory_str}")
             req = self.dialogue.get_llm_dialogue_with_memory(
                 memory_str)
-            print("req", req)
+            # print("req", req)
             llm_responses = self.llm.response(
                 self.session_id, req
             )
@@ -602,7 +629,7 @@ class ConnectionHandler:
             json.dumps(self.dialogue.get_llm_dialogue(),
                        indent=4, ensure_ascii=False)
         )
-        # self._async_save_memory()
+        self._async_save_memory()
         return True
 
     def chat_with_function_calling(self, query, tool_call=False):

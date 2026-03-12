@@ -1,0 +1,49 @@
+[
+    {
+        "name": "save_profile_names",
+        "description": "当用户希望助手记住自己的称呼，或者给电子宠物命名时调用",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "user_nick_name": {
+                    "type": "string",
+                    "description": "用户希望被称呼的名字，可为空"
+                },
+                "pet_nick_name": {
+                    "type": "string",
+                    "description": "用户给宠物取的名字，可为空"
+                }
+            },
+            "anyOf": [
+                {
+                    "required": [
+                        "user_nick_name"
+                    ]
+                },
+                {
+                    "required": [
+                        "pet_nick_name"
+                    ]
+                }
+            ],
+            "additionalProperties": false
+        }
+    },
+    {
+        "name": "save_important_info",
+        "description": "当用户明确要求记住某信息，或对话中出现高价值且需长期记住的信息时调用",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "important_text": {
+                    "type": "string",
+                    "description": "需要长期记住的重要信息"
+                }
+            },
+            "required": [
+                "important_text"
+            ],
+            "additionalProperties": false
+        }
+    }
+]

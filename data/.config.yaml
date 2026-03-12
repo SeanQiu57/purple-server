@@ -146,7 +146,7 @@ selected_module:
   # TTS将根据配置名称对应的type调用实际的TTS适配器
   TTS: EdgeTTS
   # 记忆模块，默认不开启记忆；如果想使用超长记忆，推荐使用mem0ai；如果注重隐私，请使用本地的mem_local_short
-  Memory: nomem
+  Memory: jiuchongmem
   # 意图识别模块开启后，可以播放音乐、控制音量、识别退出指令。
   # 不想开通意图识别，就设置成：nointent
   # 意图识别可使用intent_llm。优点：通用性强，缺点：增加串行前置意图识别模块，会增加处理时间，支持控制音量大小等iot操作
@@ -204,6 +204,41 @@ Memory:
   mem_local_short:
     # 本地记忆功能，通过selected_module的llm总结，数据保存在本地，不会上传到服务器
     type: mem_local_short
+  jiuchongmem:
+    type: jiuchongmem
+    # PostgreSQL 连接。可直接写完整 db_url，或改用下面注释掉的 db 拆分配置。
+    db_url: postgresql+psycopg2://postgres:sean@127.0.0.1:5432/azi_db
+    # 如果 selected_module.LLM 使用 DoubaoLLM，可省略 ark_api_key / perception_model_id，自动复用当前 LLM 的 api_key / model_name。
+    ark_api_key: 4cb68e6b-fe64-4d3c-b461-1d3a4ed02b0d
+    perception_model_id: ep-20260312062746-zs8ft #记忆总结模型endpoint
+    function_call_model_id: ep-20260312113037-qpmb8 # function call 模型
+    # embedding 模型endpoint
+    embedding_model_id: ep-20250308190107-tghm7
+    # 知识库来源 user_id 列表（正式参数）
+    kb_user_ids:
+      - sdt_cleaned
+    # 兼容旧字段：未设置 kb_user_ids 时才会回退读取 knowledge_user_id
+    # knowledge_user_id: sdt_cleaned
+    # 知识库召回参数（max_items 从 prompt_profile.chat_kb_k 读取）
+    kb_min_items: 0
+    kb_max_distance: 0.25
+    # 长期记忆召回参数（max_items 从 prompt_profile.chat_long_k 读取）
+    long_mem_min_items: 0
+    long_mem_max_distance: 0.25
+    # 短期记忆条数从 prompt_profile.chat_short_keep 读取
+    # 当 prompt_profile 缺失时，使用以下默认值
+    default_chat_short_keep: 5
+    default_chat_kb_k: 3
+    default_chat_long_k: 5
+    compact_pop_batch: 10
+    # 最终 user 条目内嵌的重要指令
+    important_notice: 不输出表情符号,贴近生活不浮夸，切勿喋喋不休
+    # 向量写入与分块参数
+    collection_name: jiuchongmemory #postgres vector里面的集合名称,不要乱改
+    chunk_size: 300
+    vector_batch_size: 156
+    min_chunk_length: 30
+
 
 ASR:
   FunASR:

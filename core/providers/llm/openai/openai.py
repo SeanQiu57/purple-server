@@ -40,7 +40,7 @@ class LLMProvider(LLMProviderBase):
                 max_tokens=self.max_tokens,
                 user=conv_id,
             )
-            logger.info(f"LLm SEND content{dialogue}with conv_id {conv_id}")
+            # logger.info(f"LLm SEND content{dialogue}with conv_id {conv_id}")
             is_active = True
             for chunk in responses:
                 try:
@@ -77,7 +77,7 @@ class LLMProvider(LLMProviderBase):
                 tools=functions,
                 user=conv_id,    # ← 同样传递 user
             )
-            logger.info(f"LLm SEND content{dialogue}with conv_id {conv_id}")
+            # logger.info(f"LLm SEND content{dialogue}with conv_id {conv_id}")
             for chunk in stream:
                 # 检查是否存在有效的choice且content不为空
                 if getattr(chunk, "choices", None):

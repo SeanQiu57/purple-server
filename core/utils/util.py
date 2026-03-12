@@ -317,12 +317,18 @@ def initialize_modules(
             if "type" not in config["Memory"][select_memory_module]
             else config["Memory"][select_memory_module]["type"]
         )
-        modules["memory"] = memory.create_instance(
-            memory_type,
-            config["Memory"][select_memory_module],
-            config.get("summaryMemory", None),
-        )
-        logger.bind(tag=TAG).info(f"初始化组件: memory成功 {select_memory_module}")
+        # jiuchongmem 需要按连接独立实例化，避免共享 provider 导致 role_id 覆盖。
+        if memory_type == "jiuchongmem":
+            logger.bind(tag=TAG).info(
+                f"初始化组件: 使用九重mem组件，memory跳过全局实例化 {select_memory_module} (per-connection mode)"
+            )
+        else:
+            modules["memory"] = memory.create_instance(
+                memory_type,
+                config["Memory"][select_memory_module],
+                config.get("summaryMemory", None),
+            )
+            logger.bind(tag=TAG).info(f"初始化组件: memory成功 {select_memory_module}")
 
     # 初始化VAD模块
     if init_vad:
