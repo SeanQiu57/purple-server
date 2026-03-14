@@ -162,9 +162,10 @@ class StreamEvent:
 
 
 def normalize_base_url(base_url: str) -> str:
-    normalized = base_url.rstrip("/")
-    if not normalized.endswith("/v1"):
-        normalized = f"{normalized}/v1"
+    normalized = base_url.strip().rstrip("/")
+    # 兼容误配：如果填了完整 endpoint，统一回退到 service base_url
+    if normalized.endswith("/chat/completions"):
+        normalized = normalized[: -len("/chat/completions")]
     return normalized
 
 

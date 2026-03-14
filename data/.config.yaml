@@ -363,13 +363,12 @@ LLM:
         base_url: https://ark.cn-beijing.volces.com/api/v3
         api_key: 126dc1be-5b5b-4644-aa97-a341b1233d64
         model_name: ep-m-20251125164559-m2qq9
-
       - name: backup1_aliyun
         base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
         api_key: sk-5010b53edce04a7992f873436789b990
         model_name: deepseek-v3.1
       - name: backup2_silicon
-        base_url: https://api.siliconflow.cn/v1/chat/completions
+        base_url: https://api.siliconflow.cn/v1
         api_key: sk-knlltutjasoelcblyrwagsrwfklfaxsflkthvfmmwcnvhxez
         model_name: Pro/deepseek-ai/DeepSeek-V3.1-Terminus
   DeepSeekLLM:
