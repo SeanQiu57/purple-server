@@ -51,6 +51,7 @@ class APIConfig:
     name: str
     base_url: str
     api_key: str
+    model_name: str
 
 
 @dataclass(frozen=True)
@@ -64,8 +65,8 @@ class RouterConfig:
 
     @classmethod
     def from_provider_config(cls, config: dict[str, Any]) -> "RouterConfig":
-        model_name = config.get("model_name")
-        if not model_name:
+        default_model_name = config.get("model_name")
+        if not default_model_name:
             raise ValueError("model_name is required")
 
         max_tokens = config.get("max_tokens")
@@ -97,15 +98,19 @@ class RouterConfig:
             name = api_config.get("name") or f"api-{index}"
             base_url = api_config.get("base_url") or api_config.get("url")
             api_key = api_config.get("api_key", default_api_key)
+            model_name = api_config.get("model_name", default_model_name)
             if not base_url:
                 raise ValueError(f"base_url is required for api '{name}'")
             if not api_key:
                 raise ValueError(f"api_key is required for api '{name}'")
+            if not model_name:
+                raise ValueError(f"model_name is required for api '{name}'")
             parsed_apis.append(
                 APIConfig(
                     name=name,
                     base_url=normalize_base_url(base_url),
                     api_key=api_key,
+                    model_name=model_name,
                 )
             )
 
@@ -113,7 +118,7 @@ class RouterConfig:
             raise ValueError("at least one api must be configured")
 
         return cls(
-            model_name=model_name,
+            model_name=default_model_name,
             apis=tuple(parsed_apis),
             timeout_seconds=timeout_seconds,
             health_check_interval=health_check_interval,
@@ -198,14 +203,13 @@ class APIClient:
     async def stream_chat(
         self,
         *,
-        model_name: str,
         dialogue: list[dict[str, Any]],
         max_tokens: int,
         conv_id: str,
         functions: Optional[list[dict[str, Any]]] = None,
     ) -> AsyncIterator[StreamEvent]:
         payload: dict[str, Any] = {
-            "model": model_name,
+            "model": self.config.model_name,
             "messages": dialogue,
             "stream": True,
             "max_tokens": max_tokens,
@@ -257,12 +261,11 @@ class APIClient:
     async def health_check(
         self,
         *,
-        model_name: str,
         prompt: str,
         max_tokens: int,
     ) -> None:
         payload = {
-            "model": model_name,
+            "model": self.config.model_name,
             "stream": False,
             "max_tokens": min(max_tokens, 8),
             "messages": [
@@ -462,7 +465,6 @@ class LLMRouter:
                 await asyncio.sleep(self.config.health_check_interval)
                 try:
                     await self.clients[target_api].health_check(
-                        model_name=self.config.model_name,
                         prompt=self.config.health_check_prompt,
                         max_tokens=self.config.max_tokens,
                     )
@@ -512,7 +514,6 @@ class LLMRouter:
         client = self.clients[api_name]
         conv_id = str(uuid.uuid4())
         async for event in client.stream_chat(
-            model_name=self.config.model_name,
             dialogue=dialogue,
             max_tokens=self.config.max_tokens,
             conv_id=conv_id,

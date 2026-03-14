@@ -353,9 +353,25 @@ LLM:
     # 开通改地址：https://console.volcengine.com/ark/region:ark+cn-beijing/openManagement?LLM=%7B%7D&OpenTokenDrawer=false
     # 免费额度500000token
     # 开通后，进入这里获取密钥：https://console.volcengine.com/ark/region:ark+cn-beijing/apiKey?apikey=%7B%7D
-    base_url: https://ark.cn-beijing.volces.com/api/v3
     model_name: ep-20260311012658-tffj4
-    api_key: 4cb68e6b-fe64-4d3c-b461-1d3a4ed02b0d
+    max_tokens: 500
+    timeout_seconds: 10
+    health_check_interval: 60
+    health_check_prompt: ping，请只回答 pong
+    apis:
+      - name: primary
+        base_url: https://ark.cn-beijing.volces.com/api/v3
+        api_key: 4cb68e6b-fe64-4d3c-b461-1d3a4ed02b0d
+        # 可选：每个 API 使用独立模型，不填则回退到上面的 model_name
+        model_name: ep-20260311012658-tffj4
+      - name: backup1_aliyun
+        base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+        api_key: sk-5010b53edce04a7992f873436789b990
+        model_name: deepseek-v3.1
+      - name: backup2_silicon
+        base_url: https://api.siliconflow.cn/v1/chat/completions
+        api_key: sk-knlltutjasoelcblyrwagsrwfklfaxsflkthvfmmwcnvhxez
+        model_name: Pro/deepseek-ai/DeepSeek-V3.1-Terminus
   DeepSeekLLM:
     # 定义LLM API类型
     type: openai
