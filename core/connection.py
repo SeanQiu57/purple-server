@@ -644,7 +644,6 @@ class ConnectionHandler:
         self.llm_finish_task = False
         text_index = 0
         for content in llm_responses:
-            self.logger.bind(tag=TAG).info(f"[chat][raw_chunk] {content}")
             response_message.append(content)
             if self.client_abort:
                 break
@@ -660,9 +659,6 @@ class ConnectionHandler:
                 segment_text_raw = current_text[: split_pos + 1]
                 display_text = self._normalize_display_text(segment_text_raw)
                 tts_text = self._normalize_tts_text(segment_text_raw)
-                self.logger.bind(tag=TAG).info(
-                    f"[chat][split] raw={segment_text_raw} | display={display_text} | tts={tts_text}"
-                )
                 if display_text:
                     # 强制设置空字符，测试TTS出错返回语音的健壮性
                     # if text_index % 2 == 0:
@@ -672,30 +668,20 @@ class ConnectionHandler:
                     future = self.executor.submit(
                         self.speak_and_play, display_text, text_index, tts_text
                     )
-                    self.logger.bind(tag=TAG).info(
-                        f"[chat][submit_tts] idx={text_index} | return={display_text} | tts={tts_text}"
-                    )
                     self.tts_queue.put((future, text_index))
                     processed_chars += split_pos + 1  # 更新已处理字符位置
 
         # 处理最后剩余的文本
         full_text = "".join(response_message)
-        self.logger.bind(tag=TAG).info(f"[chat][raw_full] {full_text}")
         remaining_text = full_text[processed_chars:]
         if remaining_text:
             display_text = self._normalize_display_text(remaining_text)
             tts_text = self._normalize_tts_text(remaining_text)
-            self.logger.bind(tag=TAG).info(
-                f"[chat][tail] raw={remaining_text} | display={display_text} | tts={tts_text}"
-            )
             if display_text:
                 text_index += 1
                 self.recode_first_last_text(display_text, text_index)
                 future = self.executor.submit(
                     self.speak_and_play, display_text, text_index, tts_text
-                )
-                self.logger.bind(tag=TAG).info(
-                    f"[chat][submit_tts_tail] idx={text_index} | return={display_text} | tts={tts_text}"
                 )
                 self.tts_queue.put((future, text_index))
 
@@ -1012,9 +998,7 @@ class ConnectionHandler:
                             f"TTS出错：{text_index}: tts text is empty"
                         )
                     elif no_tts_audio:
-                        self.logger.bind(tag=TAG).info(
-                            f"[chat][mute_parentheses] idx={text_index} | return={text}"
-                        )
+                        pass
                     elif tts_file is None:
                         self.logger.bind(tag=TAG).error(
                             f"TTS出错： file is empty: {text_index}: {text}"
