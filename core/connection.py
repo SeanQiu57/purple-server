@@ -544,24 +544,27 @@ class ConnectionHandler:
         self.dialogue.update_system_message(self.prompt)
 
     def _remove_chinese_in_parentheses(self, text):
-        """移除中英文括号中的中文字符，避免被TTS朗读。"""
+        """移除中英文括号内的全部内容（含括号），用于TTS静音括号段。"""
         if not text:
             return text
 
-        pattern = re.compile(r"([（(])([^（）()]*)[）)]")
-
-        def _replace(match):
-            content = match.group(2)
-            # 仅移除括号内中文，保留其他字符；若为空则整体去掉括号内容。
-            content_without_chinese = re.sub(r"[\u4e00-\u9fff]", "", content).strip()
-            return content_without_chinese
-
-        return pattern.sub(_replace, text)
+        pattern = re.compile(r"[（(][^（）()]*[）)]")
+        previous = None
+        result = text
+        # 循环替换，尽可能处理多段或嵌套括号内容。
+        while previous != result:
+            previous = result
+            result = pattern.sub("", result)
+        return result
 
     def _normalize_tts_text(self, text):
-        """TTS前文本归一化：去掉括号中的中文，再做首尾标点和emoji清洗。"""
+        """TTS前文本归一化：去掉括号中的全部内容，再做首尾标点和emoji清洗。"""
         no_chinese_in_parentheses = self._remove_chinese_in_parentheses(text)
         return get_string_no_punctuation_or_emoji(no_chinese_in_parentheses)
+
+    def _normalize_display_text(self, text):
+        """回传前端展示文本归一化：保留括号原文，仅做首尾清洗。"""
+        return get_string_no_punctuation_or_emoji(text)
 
     def _find_split_position(self, current_text):
         """优先按句末标点分句；若累计超过15字仍无分句，则按逗号分句。"""
@@ -639,15 +642,16 @@ class ConnectionHandler:
             # 找到分割点则处理
             if split_pos != -1:
                 segment_text_raw = current_text[: split_pos + 1]
-                segment_text = self._normalize_tts_text(segment_text_raw)
-                if segment_text:
+                display_text = self._normalize_display_text(segment_text_raw)
+                tts_text = self._normalize_tts_text(segment_text_raw)
+                if display_text and tts_text:
                     # 强制设置空字符，测试TTS出错返回语音的健壮性
                     # if text_index % 2 == 0:
                     #     segment_text = " "
                     text_index += 1
-                    self.recode_first_last_text(segment_text, text_index)
+                    self.recode_first_last_text(display_text, text_index)
                     future = self.executor.submit(
-                        self.speak_and_play, segment_text, text_index
+                        self.speak_and_play, display_text, text_index, tts_text
                     )
                     self.tts_queue.put((future, text_index))
                     processed_chars += split_pos + 1  # 更新已处理字符位置
@@ -656,12 +660,13 @@ class ConnectionHandler:
         full_text = "".join(response_message)
         remaining_text = full_text[processed_chars:]
         if remaining_text:
-            segment_text = self._normalize_tts_text(remaining_text)
-            if segment_text:
+            display_text = self._normalize_display_text(remaining_text)
+            tts_text = self._normalize_tts_text(remaining_text)
+            if display_text and tts_text:
                 text_index += 1
-                self.recode_first_last_text(segment_text, text_index)
+                self.recode_first_last_text(display_text, text_index)
                 future = self.executor.submit(
-                    self.speak_and_play, segment_text, text_index
+                    self.speak_and_play, display_text, text_index, tts_text
                 )
                 self.tts_queue.put((future, text_index))
 
@@ -763,15 +768,18 @@ class ConnectionHandler:
                     # 找到分割点则处理
                     if split_pos != -1:
                         segment_text_raw = current_text[: split_pos + 1]
-                        segment_text = self._normalize_tts_text(
+                        display_text = self._normalize_display_text(
                             segment_text_raw
                         )
-                        if segment_text:
+                        tts_text = self._normalize_tts_text(
+                            segment_text_raw
+                        )
+                        if display_text and tts_text:
                             text_index += 1
                             self.recode_first_last_text(
-                                segment_text, text_index)
+                                display_text, text_index)
                             future = self.executor.submit(
-                                self.speak_and_play, segment_text, text_index
+                                self.speak_and_play, display_text, text_index, tts_text
                             )
                             self.tts_queue.put((future, text_index))
                             # 更新已处理字符位置
@@ -826,12 +834,13 @@ class ConnectionHandler:
         full_text = "".join(response_message)
         remaining_text = full_text[processed_chars:]
         if remaining_text:
-            segment_text = self._normalize_tts_text(remaining_text)
-            if segment_text:
+            display_text = self._normalize_display_text(remaining_text)
+            tts_text = self._normalize_tts_text(remaining_text)
+            if display_text and tts_text:
                 text_index += 1
-                self.recode_first_last_text(segment_text, text_index)
+                self.recode_first_last_text(display_text, text_index)
                 future = self.executor.submit(
-                    self.speak_and_play, segment_text, text_index
+                    self.speak_and_play, display_text, text_index, tts_text
                 )
                 self.tts_queue.put((future, text_index))
 
@@ -1068,13 +1077,17 @@ class ConnectionHandler:
 
         self.logger.bind(tag=TAG).info("聊天记录上报线程已退出")
 
-    def speak_and_play(self, text, text_index=0):
+    def speak_and_play(self, text, text_index=0, tts_text=None):
         if text is None or len(text) <= 0:
             self.logger.bind(tag=TAG).info(f"无需tts转换，query为空，{text}")
             return None, text, text_index
-        tts_file = self.tts.to_tts(text)
+        voice_text = text if tts_text is None else tts_text
+        if voice_text is None or len(voice_text) <= 0:
+            self.logger.bind(tag=TAG).info(f"无需tts转换，语音文本为空，展示文本={text}")
+            return None, text, text_index
+        tts_file = self.tts.to_tts(voice_text)
         if tts_file is None:
-            self.logger.bind(tag=TAG).error(f"tts转换失败，{text}")
+            self.logger.bind(tag=TAG).error(f"tts转换失败，{voice_text}")
             return None, text, text_index
         self.logger.bind(tag=TAG).debug(f"TTS 文件生成完毕: {tts_file}")
         if self.max_output_size > 0:
