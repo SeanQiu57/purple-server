@@ -421,43 +421,44 @@ class LLMRouter:
             )
 
         errors: dict[str, Exception] = {}
-        result_queue: asyncio.Queue[
-            tuple[str, str, Optional[list[StreamEvent]], Optional[Exception]]
-        ] = asyncio.Queue()
-        tasks_by_api: dict[str, asyncio.Task[None]] = {}
+        tasks = {
+            asyncio.create_task(
+                self._collect_response(api_name, dialogue, functions),
+                name=f"race-{api_name}",
+            ): api_name
+            for api_name in candidates
+        }
 
-        async def run_candidate(api_name: str) -> None:
-            try:
-                events = await self._collect_response(api_name, dialogue, functions)
-                await result_queue.put(("success", api_name, events, None))
-            except asyncio.CancelledError:
-                raise
-            except Exception as exc:
-                await result_queue.put(("error", api_name, None, exc))
-
-        async with asyncio.TaskGroup() as task_group:
-            for api_name in candidates:
-                task = task_group.create_task(
-                    run_candidate(api_name),
-                    name=f"race-{api_name}",
+        try:
+            pending = set(tasks.keys())
+            while pending:
+                done, pending = await asyncio.wait(
+                    pending,
+                    return_when=asyncio.FIRST_COMPLETED,
                 )
-                tasks_by_api[api_name] = task
 
-            for _ in range(len(candidates)):
-                status, api_name, events, exc = await result_queue.get()
-                if status == "success" and events is not None:
-                    for other_api, task in tasks_by_api.items():
-                        if other_api != api_name and not task.done():
-                            task.cancel()
+                for task in done:
+                    api_name = tasks[task]
+                    try:
+                        events = task.result()
+                    except Exception as exc:
+                        errors[api_name] = exc
+                        logger.bind(tag=TAG).warning(
+                            f"fallback candidate failed: api={api_name}, error={exc}"
+                        )
+                        continue
+
+                    for pending_task in pending:
+                        pending_task.cancel()
+                    if pending:
+                        await asyncio.gather(*pending, return_exceptions=True)
                     return api_name, events
 
-                if exc is not None:
-                    errors[api_name] = exc
-                    logger.bind(tag=TAG).warning(
-                        f"fallback candidate failed: api={api_name}, error={exc}"
-                    )
-
-        raise AllBackendsFailedError(errors)
+            raise AllBackendsFailedError(errors)
+        finally:
+            for task in tasks:
+                if not task.done():
+                    task.cancel()
 
     async def health_checker(self, target_api: str) -> None:
         try:
