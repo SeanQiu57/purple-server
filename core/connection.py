@@ -8,6 +8,7 @@ import time
 import queue
 import asyncio
 import traceback
+import re
 
 import threading
 import websockets
@@ -542,6 +543,60 @@ class ConnectionHandler:
         # 更新系统prompt至上下文
         self.dialogue.update_system_message(self.prompt)
 
+    def _remove_chinese_in_parentheses(self, text):
+        """移除中英文括号中的中文字符，避免被TTS朗读。"""
+        if not text:
+            return text
+
+        pattern = re.compile(r"([（(])([^（）()]*)[）)]")
+
+        def _replace(match):
+            content = match.group(2)
+            # 仅移除括号内中文，保留其他字符；若为空则整体去掉括号内容。
+            content_without_chinese = re.sub(r"[\u4e00-\u9fff]", "", content).strip()
+            return content_without_chinese
+
+        return pattern.sub(_replace, text)
+
+    def _normalize_tts_text(self, text):
+        """TTS前文本归一化：去掉括号中的中文，再做首尾标点和emoji清洗。"""
+        no_chinese_in_parentheses = self._remove_chinese_in_parentheses(text)
+        return get_string_no_punctuation_or_emoji(no_chinese_in_parentheses)
+
+    def _find_split_position(self, current_text):
+        """优先按句末标点分句；若累计超过15字仍无分句，则按逗号分句。"""
+        if not current_text:
+            return -1
+
+        punctuations = ("。", ".", "？", "?", "！", "!", "；", ";", "：")
+        last_punct_pos = -1
+
+        for punct in punctuations:
+            pos = current_text.rfind(punct)
+            if pos == -1:
+                continue
+            # 如果.前面是数字，则视为小数点，不作为分句点。
+            if punct == ".":
+                prev_char = current_text[pos - 1] if pos - 1 >= 0 else ""
+                if prev_char.isdigit():
+                    continue
+            if pos > last_punct_pos:
+                last_punct_pos = pos
+
+        if last_punct_pos != -1:
+            return last_punct_pos
+
+        # 超过15字仍未遇到句末标点，按最后一个逗号分句（包含逗号本身）。
+        comma_pos = max(current_text.rfind("，"), current_text.rfind(","))
+        if comma_pos == -1:
+            return -1
+
+        prefix_text = self._normalize_tts_text(current_text[: comma_pos + 1])
+        if len(prefix_text) > 15:
+            return comma_pos
+
+        return -1
+
     def chat(self, query):
 
         self.dialogue.put(Message(role="user", content=query))
@@ -579,24 +634,12 @@ class ConnectionHandler:
             full_text = "".join(response_message)
             current_text = full_text[processed_chars:]  # 从未处理的位置开始
 
-            # 查找最后一个有效标点
-            punctuations = ("。", ".", "？", "?", "！", "!", "；", ";", "：")
-            last_punct_pos = -1
-            number_flag = True
-            for punct in punctuations:
-                pos = current_text.rfind(punct)
-                prev_char = current_text[pos - 1] if pos - 1 >= 0 else ""
-                # 如果.前面是数字统一判断为小数
-                if prev_char.isdigit() and punct == ".":
-                    number_flag = False
-                if pos > last_punct_pos and number_flag:
-                    last_punct_pos = pos
+            split_pos = self._find_split_position(current_text)
 
             # 找到分割点则处理
-            if last_punct_pos != -1:
-                segment_text_raw = current_text[: last_punct_pos + 1]
-                segment_text = get_string_no_punctuation_or_emoji(
-                    segment_text_raw)
+            if split_pos != -1:
+                segment_text_raw = current_text[: split_pos + 1]
+                segment_text = self._normalize_tts_text(segment_text_raw)
                 if segment_text:
                     # 强制设置空字符，测试TTS出错返回语音的健壮性
                     # if text_index % 2 == 0:
@@ -607,13 +650,13 @@ class ConnectionHandler:
                         self.speak_and_play, segment_text, text_index
                     )
                     self.tts_queue.put((future, text_index))
-                    processed_chars += len(segment_text_raw)  # 更新已处理字符位置
+                    processed_chars += split_pos + 1  # 更新已处理字符位置
 
         # 处理最后剩余的文本
         full_text = "".join(response_message)
         remaining_text = full_text[processed_chars:]
         if remaining_text:
-            segment_text = get_string_no_punctuation_or_emoji(remaining_text)
+            segment_text = self._normalize_tts_text(remaining_text)
             if segment_text:
                 text_index += 1
                 self.recode_first_last_text(segment_text, text_index)
@@ -715,25 +758,12 @@ class ConnectionHandler:
                     full_text = "".join(response_message)
                     current_text = full_text[processed_chars:]  # 从未处理的位置开始
 
-                    # 查找最后一个有效标点
-                    punctuations = ("。", ".", "？", "?",
-                                    "！", "!", "；", ";", "：")
-                    last_punct_pos = -1
-                    number_flag = True
-                    for punct in punctuations:
-                        pos = current_text.rfind(punct)
-                        prev_char = current_text[pos -
-                                                 1] if pos - 1 >= 0 else ""
-                        # 如果.前面是数字统一判断为小数
-                        if prev_char.isdigit() and punct == ".":
-                            number_flag = False
-                        if pos > last_punct_pos and number_flag:
-                            last_punct_pos = pos
+                    split_pos = self._find_split_position(current_text)
 
                     # 找到分割点则处理
-                    if last_punct_pos != -1:
-                        segment_text_raw = current_text[: last_punct_pos + 1]
-                        segment_text = get_string_no_punctuation_or_emoji(
+                    if split_pos != -1:
+                        segment_text_raw = current_text[: split_pos + 1]
+                        segment_text = self._normalize_tts_text(
                             segment_text_raw
                         )
                         if segment_text:
@@ -745,7 +775,7 @@ class ConnectionHandler:
                             )
                             self.tts_queue.put((future, text_index))
                             # 更新已处理字符位置
-                            processed_chars += len(segment_text_raw)
+                            processed_chars += split_pos + 1
 
         # 处理function call
         if tool_call_flag:
@@ -796,7 +826,7 @@ class ConnectionHandler:
         full_text = "".join(response_message)
         remaining_text = full_text[processed_chars:]
         if remaining_text:
-            segment_text = get_string_no_punctuation_or_emoji(remaining_text)
+            segment_text = self._normalize_tts_text(remaining_text)
             if segment_text:
                 text_index += 1
                 self.recode_first_last_text(segment_text, text_index)
