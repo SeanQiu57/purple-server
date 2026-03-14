@@ -644,6 +644,7 @@ class ConnectionHandler:
         self.llm_finish_task = False
         text_index = 0
         for content in llm_responses:
+            self.logger.bind(tag=TAG).info(f"[chat][raw_chunk] {content}")
             response_message.append(content)
             if self.client_abort:
                 break
@@ -679,6 +680,7 @@ class ConnectionHandler:
 
         # 处理最后剩余的文本
         full_text = "".join(response_message)
+        self.logger.bind(tag=TAG).info(f"[chat][raw_full] {full_text}")
         remaining_text = full_text[processed_chars:]
         if remaining_text:
             display_text = self._normalize_display_text(remaining_text)
