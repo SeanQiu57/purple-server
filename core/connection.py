@@ -8,7 +8,6 @@ import time
 import queue
 import asyncio
 import traceback
-import re
 
 import threading
 import websockets
@@ -548,14 +547,30 @@ class ConnectionHandler:
         if not text:
             return text
 
-        pattern = re.compile(r"[（(][^（）()]*[）)]")
-        previous = None
-        result = text
-        # 循环替换，尽可能处理多段或嵌套括号内容。
-        while previous != result:
-            previous = result
-            result = pattern.sub("", result)
-        return result
+        # 逐字符扫描：进入括号后忽略全部内容，直到匹配闭括号。
+        # 支持中英文括号及嵌套，未闭合括号后续内容也会被静音。
+        open_to_close = {"(": ")", "（": "）"}
+        close_set = {")", "）"}
+        close_stack = []
+        result = []
+
+        for ch in text:
+            if ch in open_to_close:
+                close_stack.append(open_to_close[ch])
+                continue
+
+            if ch in close_set:
+                if close_stack and ch == close_stack[-1]:
+                    close_stack.pop()
+                # 闭括号字符本身不保留
+                continue
+
+            if close_stack:
+                continue
+
+            result.append(ch)
+
+        return "".join(result)
 
     def _normalize_tts_text(self, text):
         """TTS前文本归一化：去掉括号中的全部内容，再做首尾标点和emoji清洗。"""
@@ -644,6 +659,9 @@ class ConnectionHandler:
                 segment_text_raw = current_text[: split_pos + 1]
                 display_text = self._normalize_display_text(segment_text_raw)
                 tts_text = self._normalize_tts_text(segment_text_raw)
+                self.logger.bind(tag=TAG).debug(
+                    f"[chat][split] raw={segment_text_raw} | display={display_text} | tts={tts_text}"
+                )
                 if display_text and tts_text:
                     # 强制设置空字符，测试TTS出错返回语音的健壮性
                     # if text_index % 2 == 0:
@@ -652,6 +670,9 @@ class ConnectionHandler:
                     self.recode_first_last_text(display_text, text_index)
                     future = self.executor.submit(
                         self.speak_and_play, display_text, text_index, tts_text
+                    )
+                    self.logger.bind(tag=TAG).debug(
+                        f"[chat][submit_tts] idx={text_index} | return={display_text} | tts={tts_text}"
                     )
                     self.tts_queue.put((future, text_index))
                     processed_chars += split_pos + 1  # 更新已处理字符位置
@@ -662,11 +683,17 @@ class ConnectionHandler:
         if remaining_text:
             display_text = self._normalize_display_text(remaining_text)
             tts_text = self._normalize_tts_text(remaining_text)
+            self.logger.bind(tag=TAG).debug(
+                f"[chat][tail] raw={remaining_text} | display={display_text} | tts={tts_text}"
+            )
             if display_text and tts_text:
                 text_index += 1
                 self.recode_first_last_text(display_text, text_index)
                 future = self.executor.submit(
                     self.speak_and_play, display_text, text_index, tts_text
+                )
+                self.logger.bind(tag=TAG).debug(
+                    f"[chat][submit_tts_tail] idx={text_index} | return={display_text} | tts={tts_text}"
                 )
                 self.tts_queue.put((future, text_index))
 
